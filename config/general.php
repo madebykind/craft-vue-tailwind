@@ -34,7 +34,7 @@ return [
          * Debugging
          */
 
-        'isSystemLive' => filter_var(getenv('CRAFT_LIVE'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) : true,
+        'isSystemLive' => filter_var(getenv('CRAFT_LIVE'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) ?? true,
         'devMode' => filter_var(getenv('CRAFT_DEBUG'), FILTER_VALIDATE_BOOLEAN),
         'testToEmailAddress' => getenv('CRAFT_CATCH_ALL_EMAIL_ADDRESS') ?: null,
         'environment' => getenv('ENVIRONMENT'),
