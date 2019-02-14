@@ -34,7 +34,7 @@ return [
          * Debugging
          */
 
-        'isSystemLive' filter_var(getenv('CRAFT_LIVE'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) : true,
+        'isSystemLive' => filter_var(getenv('CRAFT_LIVE'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) : true,
         'devMode' => filter_var(getenv('CRAFT_DEBUG'), FILTER_VALIDATE_BOOLEAN),
         'testToEmailAddress' => getenv('CRAFT_CATCH_ALL_EMAIL_ADDRESS') ?: null,
         'environment' => getenv('ENVIRONMENT'),
@@ -62,16 +62,16 @@ return [
         'blowfishHashCost' => 16,
 
         // sessions
-        'userSessionDuration'           => 'P1D',
+        'userSessionDuration' => 'P1D',
         'rememberedUserSessionDuration' => 'P1W',
-        'rememberUsernameDuration'      => 'P1M',
-        'verificationCodeDuration'      => 'P1D',
-        'preventUserEnumeration'        => true,
+        'rememberUsernameDuration' => 'P1M',
+        'verificationCodeDuration' => 'P1D',
+        'preventUserEnumeration' => true,
 
         /*
             Uploads
          */
-        'maxUploadFileSize'             => 32 * 1024 * 1024,
+        'maxUploadFileSize' => 32 * 1024 * 1024,
         'convertFilenamesToAscii' => true,
 
         /**
@@ -104,9 +104,9 @@ return [
 
         // Member login info duration
         // http://www.php.net/manual/en/dateinterval.construct.php
-        'userSessionDuration'           => 'P101Y',
+        'userSessionDuration' => 'P101Y',
         'rememberedUserSessionDuration' => 'P101Y',
-        'rememberUsernameDuration'      => 'P101Y',
+        'rememberUsernameDuration' => 'P101Y',
 
 
         'backupDbOnUpdate' => false,
