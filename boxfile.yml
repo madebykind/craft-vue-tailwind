@@ -1,0 +1,47 @@
+run.config:  
+  engine: madebykind/nanobox-engine-php
+  engine.config:
+    runtime: php-7.3
+    document_root: web
+    webserver: apache
+    upload_max_filesize: '32M'
+    post_max_Size: '32M'
+    max_execution_time: 60
+    memory_limit: '256M'
+    extensions:
+      - ctype
+      - curl
+      - dom
+      - fileinfo
+      - iconv
+      - imagick
+      - intl
+      - json
+      - mbstring
+      - pdo
+      - pdo_mysql
+      - session
+      - simplexml
+      - tokenizer
+      - zip
+      - zlib
+    apache_modules:
+      - headers
+  fs_watch: true
+
+web.craft:  
+  start:
+    php: start-php
+    apache: start-apache
+  network_dirs:
+    data.storage:
+      - storage
+  log_watch:
+    craft[error]: storage/logs/web.log
+    craft[stacktrace]: storage/logs/phperrors.log
+
+data.db:  
+  image: nanobox/mysql:5.7
+
+data.storage:  
+  image: nanobox/unfs:0.9
