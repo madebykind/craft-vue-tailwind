@@ -1,5 +1,5 @@
 {
-  "name": "chasegiunta/craft-vue-tailwind",
+  "name": "madebykind/craft-vue-tailwind",
   "description": "Craft CMS + Vue.js + TailwindCSS Boilerplate",
   "keywords": [
     "craft",
@@ -16,11 +16,11 @@
   "homepage": "https://craftcms.com/",
   "type": "project",
   "support": {
-    "email": "me@chasegiunta.com",
-    "issues": "https://github.com/chasegiunta/craft-vue-tailwind/issues"
+    "email": "dev@madebykind.com",
+    "issues": "https://github.com/madebykind/craft-vue-tailwind/issues"
   },
   "require": {
-    "craftcms/cms": "^3.0.0",
+    "craftcms/cms": "^3.1.0",
     "vlucas/phpdotenv": "^2.4.0",
     "clubstudioltd/craft-asset-rev": "v6.0.1"
   },
