@@ -1,6 +1,6 @@
 {
   "name": "madebykind/craft-vue-tailwind",
-  "description": "Craft CMS + Vue.js + TailwindCSS Boilerplate",
+  "description": "Craft CMS + Vue.js + TailwindCSS + Nanobox Boilerplate",
   "keywords": [
     "craft",
     "cms",
@@ -22,7 +22,7 @@
   "require": {
     "craftcms/cms": "^3.1.0",
     "vlucas/phpdotenv": "^2.4.0",
-    "clubstudioltd/craft-asset-rev": "v6.0.1"
+    "clubstudioltd/craft-asset-rev": "^v6.0.1"
   },
   "autoload": {
     "psr-4": {
@@ -32,7 +32,7 @@
   "config": {
     "optimize-autoloader": true,
     "platform": {
-      "php": "7.0"
+      "php": "7.3"
     }
   },
   "scripts": {
@@ -43,7 +43,8 @@
       "@php -r \"unlink('README.md');\"",
       "@php -r \"rename('composer.json.default', 'composer.json');\"",
       "@composer dump-autoload -o",
-      "@php craft setup/welcome"
+      "@php craft setup/welcome",
+      "@yarn",
     ]
   }
 }
