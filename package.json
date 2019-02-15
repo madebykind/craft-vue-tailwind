@@ -12,15 +12,19 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@frctl/twig": "^1.0.0-beta.5",
     "@fullhuman/postcss-purgecss": "^1.1.0",
     "autoprefixer": "^9.4.7",
     "cli-plugin-eslint": "^0.0.1",
     "postcss-import": "^12.0.0",
     "postcss-preset-env": "^6.5.0",
     "tailwindcss": "^0.7.3",
-    "vue": "^2.5.16"
+    "vue": "^2.5.16",
+    "webpack": "^4.4.0"
   },
   "devDependencies": {
+    "@frctl/fractal": "^1.1.7",
     "@vue/babel-preset-app": "^3.4.0",
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.4.0",
@@ -37,6 +41,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-vue": "^5.0.0",
     "glob-all": "^3.1.0",
+    "hygen": "^2.1.2",
     "mini-css-extract-plugin": "^0.4.1",
     "prettier": "^1.16.4",
     "purgecss-webpack-plugin": "^1.2.0",
