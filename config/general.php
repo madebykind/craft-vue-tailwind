@@ -100,7 +100,7 @@ return [
         'siteUrl' => null,
 
         // Debugging
-        'useCompressedJs' => false
+        'useCompressedJs' => false,
 
         // Member login info duration
         // http://www.php.net/manual/en/dateinterval.construct.php
@@ -109,8 +109,8 @@ return [
         'rememberUsernameDuration' => 'P101Y',
 
 
-        'backupDbOnUpdate' => false,
-        'restoreDbOnUpdateFailure' => false,
+        'backupOnUpdate' => false,
+        'restoreOnUpdateFailure' => false,
     ],
 
     // Staging environment settings

@@ -1,0 +1,7 @@
+<header>
+    {% if craft.app.request.url == '/'  %}
+        <h1>{{ siteName }}</h1>
+    {% else %}
+        <a href="/" title="Go to homepage">{{ siteName }}</a>
+    {% endif %}
+</header>

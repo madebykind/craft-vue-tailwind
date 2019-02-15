@@ -1,0 +1,43 @@
+{% spaceless %}
+{% header "Cache-Control: no-cache" %}
+{% header "Pragma: no-cache" %}
+{% endspaceless %}<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" class="no-js sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {#
+    @todo add CDN hostname
+    <link rel="dns-prefetch" href="">
+  #}
+  <link rel="home" href="{{ siteUrl }}" />
+  <title>{{ siteName }}</title>
+
+  {% if getenv('ENVIRONMENT') != 'development' %}
+    <link rel="stylesheet" href="{{ rev('app.css') }}">
+  {% endif %}
+</head>
+
+<body class="{{ craft.app.config.general.devMode ? 'debug'}}">
+  {% block fullPage %}
+    {% block masthead %}
+      {% include '_includes/chrome/masthead' %}
+    {% endblock %}
+    <main id="app">
+      {% block main %}
+
+      {% endblock %}
+    </main>
+    {% block footer %}
+      {% include '_includes/chrome/footer' %}
+    {% endblock %}
+    {% if getenv('ENVIRONMENT') == 'development' or getenv('ENVIRONMENT') == 'local' %}
+      <script src="http://localhost:8080/app.js"></script>
+    {% else %}
+      <script src="{{ rev('chunk-vendors.js') }}"></script>
+      <script src="{{ rev('app.js') }}"></script>
+    {% endif %}
+  {% endblock %}
+</body>
+</html>
