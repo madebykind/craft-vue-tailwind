@@ -19,10 +19,17 @@
     "email": "dev@madebykind.com",
     "issues": "https://github.com/madebykind/craft-vue-tailwind/issues"
   },
+  "repositories": [
+   {
+     "type": "vcs",
+     "url": "https://github.com/madebykind/fractal"
+   }
+  ],
   "require": {
     "craftcms/cms": "^3.1.0",
     "vlucas/phpdotenv": "^2.4.0",
-    "clubstudioltd/craft-asset-rev": "^v6.0.1"
+    "clubstudioltd/craft-asset-rev": "^v6.0.1",
+    "ournameismud/fractal": "dev-master"
   },
   "autoload": {
     "psr-4": {

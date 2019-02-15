@@ -2,5 +2,4 @@ title: "Buttons"
 status: "ready"
 
 context:
-  btn:
-    message: Default Button
+  text: Default Button

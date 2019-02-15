@@ -1,14 +1,16 @@
 {
   "name": "craft-vue-tailwind",
+  "title": "Craft Vue Tailwind",
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build && fractal build",
+    "component": "hygen fractal-component",
+    "dev": "vue-cli-service serve",
+    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "lint": "vue-cli-service lint",
     "lint-autofix": "vue-cli-service lint --fix",
-    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "dev": "vue-cli-service serve",
+    "serve": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {

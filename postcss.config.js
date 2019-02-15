@@ -12,7 +12,7 @@ class TailwindVueExtractor {
   }
 }
 
-const extensionsUsingCSS = ["vue", "html"];
+const extensionsUsingCSS = ["vue", "html", "twig"];
 const extensionsOfCSS = ["css", "less", "pcss", "postcss", "sass", "scss", "styl"];
 
 module.exports = {
