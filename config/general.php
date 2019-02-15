@@ -8,9 +8,16 @@
  * @see craft\config\GeneralConfig
  */
 
+
+// Ensure our urls have the right scheme
+define('URI_SCHEME', getenv('FORCE_SSL') ? "https://" : "http://" );
+
+define('SITE_URL', URI_SCHEME . getenv('SITE_HOSTNAME') . '/');
+
 return [
     // Global settings
     '*' => [
+
 
         /**
          * Schema
@@ -22,6 +29,8 @@ return [
          * Routing / URLs
          */
 
+        // Base site URL
+        'siteUrl' => SITE_URL,
         // Whether generated URLs should omit "index.php"
         'omitScriptNameInUrls' => true,
         'usePathInfo'       => true,
@@ -36,6 +45,7 @@ return [
 
         'isSystemLive' => filter_var(getenv('CRAFT_LIVE'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) ?? true,
         'devMode' => filter_var(getenv('CRAFT_DEBUG'), FILTER_VALIDATE_BOOLEAN),
+
         'testToEmailAddress' => getenv('CRAFT_CATCH_ALL_EMAIL_ADDRESS') ?: null,
         'environment' => getenv('ENVIRONMENT'),
         /**
@@ -96,9 +106,6 @@ return [
 
     // Dev environment settings
     'development' => [
-        // Base site URL
-        'siteUrl' => null,
-
         // Debugging
         'useCompressedJs' => false,
 
@@ -108,21 +115,15 @@ return [
         'rememberedUserSessionDuration' => 'P101Y',
         'rememberUsernameDuration' => 'P101Y',
 
-
         'backupOnUpdate' => false,
         'restoreOnUpdateFailure' => false,
     ],
 
     // Staging environment settings
-    'staging' => [
-        // Base site URL
-        'siteUrl' => null,
-    ],
+    'staging' => [],
 
     // Production environment settings
     'production' => [
         'allowAdminChanges' => false,
-        // Base site URL
-        'siteUrl' => null,
     ],
 ];
