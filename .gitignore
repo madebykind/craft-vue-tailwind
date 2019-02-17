@@ -31,3 +31,4 @@ yarn-error.log*
 
 .phpintel
 styleguide/
+components-map.json

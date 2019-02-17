@@ -32,7 +32,7 @@
       {% include '_includes/chrome/footer' %}
     {% endblock %}
     {% if getenv('ENVIRONMENT') == 'development' %}
-      <script src="http://localhost:8080/app.js"></script>
+      <script src="http://localhost:{{ getenv('ASSET_SERVER_PORT') }}/app.js"></script>
     {% else %}
       <script src="{{ rev('chunk-vendors.js') }}"></script>
       <script src="{{ rev('app.js') }}"></script>

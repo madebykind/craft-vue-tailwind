@@ -1,6 +1,8 @@
 const path = require("path");
 const fs = require("fs");
 
+require("colors");
+
 /* Create a new Fractal instance and export it for use elsewhere if required */
 const fractal = require("@frctl/fractal").create();
 const mandelbrot = require("@frctl/mandelbrot");
@@ -11,12 +13,17 @@ const staticPath = path.resolve(__dirname, "web/dist");
 
 const pkg = require("./package.json");
 
+if (!pkg.kindConfig) {
+  console.error("Error: looks like this project hasn't been configured yet".red);
+  process.exit();
+}
+
 /**
  * Shared
  */
 
 // Set the title and version of the project
-fractal.set("project.title", `${pkg.title} Design System`);
+fractal.set("project.title", `${pkg.kindConfig.title} Design System`);
 fractal.set("project.version", pkg.version);
 
 /**
@@ -36,6 +43,7 @@ fractal.web.set("builder.dest", path.resolve(__dirname, "styleguide"));
  * Dev
  */
 fractal.web.set("server.sync", true);
+fractal.web.set('server.port', pkg.kindConfig.ports.fractal);
 fractal.web.set("server.syncOptions", {
   open: true,
   browser: ["google chrome", "firefox"],

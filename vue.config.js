@@ -5,11 +5,21 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const whitelister = require("purgecss-whitelister");
 const glob = require("glob-all");
 const sane = require("sane");
+require("colors");
+
+const pkg = require("./package.json");
+
+if (!pkg.kindConfig) {
+  console.error("Error: looks like this project hasn't been configured yet".red);
+  console.info("run ./scripts/project/configure to get started");
+  process.exit();
+}
+
 
 const config = {
   https: false,
   host: "localhost",
-  port: 8080,
+  port: pkg.kindConfig.ports.assets,
   watchDir: "templates",
   // Whitelist selectors to stop purgecss from removing them from your CSS
   // You can pass in whole stylesheets to whitelist everything from thirdparty libs
@@ -48,7 +58,7 @@ module.exports = {
   devServer: {
     // Uncommenting these will lose the 'Network' app access
     // host: config.host,
-    // port: config.port,
+    port: config.port,
     https: config.https,
     clientLogLevel: "info",
     headers: { "Access-Control-Allow-Origin": "*" },
