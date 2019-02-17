@@ -46,6 +46,7 @@
     "hygen": "^2.1.2",
     "mini-css-extract-plugin": "^0.4.1",
     "prettier": "^1.16.4",
+    "prettier-stylelint": "^0.4.2",
     "purgecss-webpack-plugin": "^1.2.0",
     "purgecss-whitelister": "^2.1.0",
     "sane": "^3.0.0",
