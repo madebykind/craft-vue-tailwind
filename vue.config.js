@@ -101,7 +101,5 @@ module.exports = {
     process.env.NODE_ENV === "production"
       ? "/"
       : `${config.https ? "https" : "http"}://${config.host}:${config.port}/`,
-  assetsDir: undefined,
-  productionSourceMap: undefined,
-  parallel: undefined,
+  productionSourceMap: true,
 };
