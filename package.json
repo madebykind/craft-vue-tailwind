@@ -5,16 +5,22 @@
   "private": true,
   "scripts": {
     "build": "vue-cli-service build && fractal build",
-    "component": "hygen fractal-component",
+    "build:fractal": "fractal build",
+    "build:components": "fractal pathmap",
+    "new:component": "hygen fractal-component",
     "dev": "vue-cli-service serve",
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "lint": "vue-cli-service lint",
     "lint-autofix": "vue-cli-service lint --fix",
     "serve": "vue-cli-service serve",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "test:watch": "vue-cli-service test:unit --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-0",
+    "@frctl/fractal": "^1.1.7",
+    "@frctl/mandelbrot": "^1.2.0",
     "@frctl/twig": "^1.0.0-beta.5",
     "@fullhuman/postcss-purgecss": "^1.1.0",
     "autoprefixer": "^9.4.7",
@@ -26,7 +32,6 @@
     "webpack": "^4.4.0"
   },
   "devDependencies": {
-    "@frctl/fractal": "^1.1.7",
     "@vue/babel-preset-app": "^3.4.0",
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.4.0",
