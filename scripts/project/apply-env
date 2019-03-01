@@ -34,6 +34,7 @@ function setEnvvars() {
     assetServerPort: pkg.kindConfig.ports.assets,
     fractalServerPort: pkg.kindConfig.ports.fractal,
     siteHostname: pkg.kindConfig.craftDomain,
+    siteName: pkg.kindConfig.siteName,
   });
 
 

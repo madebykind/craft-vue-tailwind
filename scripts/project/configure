@@ -48,6 +48,7 @@ const applySettingsToPackage = (answers) => {
   pkg.kindConfig = {
     title: answers.projectTitle,
     craftDomain: answers.projectCraftDomain,
+    siteName: answers.siteName,
     ports: {
       assets: answers.projectAssetPort,
       fractal: answers.projectFractalPort,
@@ -75,6 +76,12 @@ inquirer.prompt([
       name: "projectHandle",
       message: "What should we use as the handle for this project?",
       default: ({ projectTitle }) => dashCase(projectTitle),
+    },,
+    {
+      type: "input",
+      name: "siteName",
+      message: "What should we use as the Site Name for this project?",
+      default: ({ siteName }) => siteName,
     },
     {
       type: "input",
