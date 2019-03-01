@@ -1,4 +1,4 @@
-run.config:  
+run.config:
   engine: madebykind/nanobox-engine-php
   engine.config:
     runtime: php-7.3
@@ -23,13 +23,14 @@ run.config:
       - session
       - simplexml
       - tokenizer
+      - xml
       - zip
       - zlib
     apache_modules:
       - headers
   fs_watch: true
 
-web.craft:  
+web.craft:
   start:
     php: start-php
     apache: start-apache
@@ -40,8 +41,8 @@ web.craft:
     craft[error]: storage/logs/web.log
     craft[stacktrace]: storage/logs/phperrors.log
 
-data.db:  
+data.db:
   image: nanobox/mysql:5.7
 
-data.storage:  
+data.storage:
   image: nanobox/unfs:0.9
