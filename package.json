@@ -47,6 +47,7 @@
     "babel-preset-env": "^1.7.0",
     "backstopjs": "^3.8.8",
     "commander": "^2.19.0",
+    "dotenv": "^6.2.0",
     "eslint": "^5.8.0",
     "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-prettier": "^3.0.1",

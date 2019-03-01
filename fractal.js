@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const path = require("path");
 const fs = require("fs");
 
@@ -6,7 +8,7 @@ require("colors");
 /* Create a new Fractal instance and export it for use elsewhere if required */
 const fractal = require("@frctl/fractal").create();
 const mandelbrot = require("@frctl/mandelbrot");
-const twigAdapter = require("@frctl/twig")();
+const twigAdapter = require("@frctl/twig");
 
 const srcPath = path.resolve(__dirname, "src");
 const staticPath = path.resolve(__dirname, "web/dist");
@@ -43,10 +45,10 @@ fractal.web.set("builder.dest", path.resolve(__dirname, "styleguide"));
  * Dev
  */
 fractal.web.set("server.sync", true);
-fractal.web.set('server.port', pkg.kindConfig.ports.fractal);
+fractal.web.set("server.port", pkg.kindConfig.ports.fractal);
 fractal.web.set("server.syncOptions", {
   open: true,
-  browser: ["google chrome", "firefox"],
+  browser: ["google chrome"],
   notify: true,
 });
 
@@ -58,7 +60,13 @@ fractal.web.set("server.syncOptions", {
 fractal.components.set("default.preview", "@preview");
 
 // Use twig
-fractal.components.engine(twigAdapter);
+fractal.components.engine(twigAdapter({
+  functions: {
+    assetPort: function() {
+        return process.env.ASSET_SERVER_PORT;
+    },
+  },
+}));
 fractal.components.set("ext", ".twig");
 
 // use MD for docs
