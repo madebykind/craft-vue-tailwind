@@ -57,6 +57,7 @@
     "inquirer": "^6.2.2",
     "jsonfile": "^5.0.0",
     "mini-css-extract-plugin": "^0.4.1",
+    "postcss-nested": "^4.1.2",
     "prettier": "^1.16.4",
     "prettier-stylelint": "^0.4.2",
     "purgecss-webpack-plugin": "^1.2.0",
