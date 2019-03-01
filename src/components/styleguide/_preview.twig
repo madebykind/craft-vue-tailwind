@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="no-js sr">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {# <link media="all" rel="stylesheet" href="{{ path '/example.css' }}"> #}
     <title>Preview Layout</title>
 </head>
 <body>
-
-{{ yield }}
-
-
-<script src="http://localhost:8080/app.js"></script>
+  {{ yield }}
+<script src="http://localhost:{{ assetPort() }}/app.js"></script>
 </body>
 </html>
