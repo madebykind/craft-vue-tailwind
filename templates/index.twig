@@ -4,7 +4,15 @@
 
 Hello world!
 
-{% include '@btn' with { text: 'this is a fractal button'} %}
+{% include '@meta' with {
+  text: 'this is meta',
+  el: 'a',
+  attrs: {
+    href: '#'
+  },
+  modifiers: ['red'],
+  data: { foo: 'bar'}
+} %}
 
 
 {% endblock %}

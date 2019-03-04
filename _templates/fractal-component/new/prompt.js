@@ -22,12 +22,10 @@ module.exports = {
         message: "Enter a component slug (used for file / directory naming)",
         validate: (val) => (val !== '') ? true : 'slug is required',
       },{
-        type: 'list',
+        type: 'confirm',
         name: 'hasModifiers',
         message: 'Does this component have modifiers?',
-        choices: ['Yes', 'No'],
-        default: () => 'No',
-        filter: (val) => val === 'Yes' ? true : false,
+        default: false,
       },
     ];
 

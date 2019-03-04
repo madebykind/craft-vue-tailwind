@@ -1,0 +1,12 @@
+{%- macro attributes(attrs, prefix) -%}
+  {% if prefix is not defined %}
+    {% set prefix = false %}
+  {% endif %}
+  {%- for name, value in attrs -%}
+    {%- if value == false -%}
+      {#- no output -#}
+    {%- else -%}
+      {{ prefix ? prefix }}{{- name }}="{{ value | trim }}"
+    {% endif %}
+  {% endfor -%}
+{%- endmacro -%}

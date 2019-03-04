@@ -3,3 +3,27 @@ status: "ready"
 
 context:
   text: Default Button
+  href: '#fo'
+
+variants:
+  -
+    name: button
+    context:
+      el: button
+      href: false
+      text: 'button tag button'
+  -
+    name: input
+    context:
+      el: input
+      href: false
+      text: null
+      attrs:
+        value: 'Input submit button'
+        type: 'submit'
+
+  -
+    name: primary
+    context:
+      modifiers:
+        - primary
