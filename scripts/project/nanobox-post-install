@@ -1,0 +1,5 @@
+#!/bin/bash
+./craft install/craft
+./craft migrate/all
+./craft install/plugin fractal
+./craft install/plugin assetrev
