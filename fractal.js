@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const path = require("path");
 const fs = require("fs");
@@ -60,13 +60,15 @@ fractal.web.set("server.syncOptions", {
 fractal.components.set("default.preview", "@preview");
 
 // Use twig
-fractal.components.engine(twigAdapter({
-  functions: {
-    assetPort: function() {
+fractal.components.engine(
+  twigAdapter({
+    functions: {
+      assetPort() {
         return process.env.ASSET_SERVER_PORT;
+      },
     },
-  },
-}));
+  })
+);
 fractal.components.set("ext", ".twig");
 
 // use MD for docs

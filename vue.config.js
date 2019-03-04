@@ -1,9 +1,7 @@
 const path = require("path");
 const ManifestPlugin = require("webpack-manifest-plugin");
-const PurgecssPlugin = require("purgecss-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const whitelister = require("purgecss-whitelister");
-const glob = require("glob-all");
 const sane = require("sane");
 const autoprefixer = require("autoprefixer");
 const postcssPresetEnv = require("postcss-preset-env");
@@ -13,9 +11,7 @@ const postcssNested = require("postcss-nested");
 
 require("colors");
 
-
 const pkg = require("./package.json");
-
 
 const isHotReloaded = process.argv.includes("serve");
 
@@ -24,7 +20,6 @@ if (!pkg.kindConfig) {
   console.info("run ./scripts/project/configure to get started");
   process.exit();
 }
-
 
 const config = {
   https: false,
@@ -47,7 +42,7 @@ const config = {
     ],
     cssFileExtensions: ["css", "less", "pcss", "postcss", "sass", "scss", "styl"],
     cssUserFileExtensions: ["html", "twig", "vue", ""],
-  }
+  },
 };
 
 // Custom PurgeCSS extractor for Tailwind that allows special characters in
@@ -75,22 +70,19 @@ const postCssPlugins = [
 if (!isHotReloaded) {
   postCssPlugins.push(
     postcssPurgecss({
-      content: [
-        `./@(web|src)/**/*.@(${config.purgecss.cssUserFileExtensions.join("|")})`,
-      ],
-      css: [
-        `./src/**/*.@(${config.purgecss.cssFileExtensions.join("|")})`,
-      ],
+      content: [`./@(web|src)/**/*.@(${config.purgecss.cssUserFileExtensions.join("|")})`],
+      css: [`./src/**/*.@(${config.purgecss.cssFileExtensions.join("|")})`],
       extractors: [
         {
           extractor: TailwindExtractor,
           extensions: ["html", "twig", "js"],
-        },{
+        },
+        {
           extractor: TailwindVueExtractor,
           extensions: ["vue"],
         },
       ],
-      whitelist: config.purgecss.whitelist,
+      whitelist: whitelister(config.purgecss.whitelist),
       whitelistPatterns: config.purgecss.whitelistPatterns,
     })
   );
@@ -137,23 +129,6 @@ module.exports = {
       new MiniCssExtractPlugin({
         filename: "css/[name].[contenthash].css",
       }),
-      // new PurgecssPlugin({
-      //   paths: glob.sync([
-      //     path.join(__dirname, "./templates/**/*.html"),
-      //     path.join(__dirname, "./templates/**/*.twig"),
-      //     path.join(__dirname, "./src/**/*.vue"),
-      //     path.join(__dirname, "./src/**/*.js"),
-      //   ]),
-      //   whitelist: whitelister(config.purgecssWhitelist),
-      //   whitelistPatterns: config.purgecssWhitelistPatterns,
-      //   extractors: [
-      //     {
-      //       extractor: TailwindExtractor,
-      //       // Specify the file extensions to include when scanning for class names.
-      //       extensions: ["html", "js", "twig", "vue"],
-      //     },
-      //   ],
-      // }),
     ],
   },
 

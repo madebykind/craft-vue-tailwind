@@ -46,7 +46,6 @@ const containerPlugin = require("tailwindcss/plugins/container")({
   // padding: '1rem',
 });
 
-
 const screensAbsolute = {
   sm: 576,
   md: 768,
@@ -54,11 +53,12 @@ const screensAbsolute = {
   xl: 1200,
 };
 
-const getScreens = (conf) => Object.entries(conf).reduce((result, [name, value]) => {
-  result[name] = value  + 'px';
-  return result;
-}, {});
-
+const getScreens = (conf) =>
+  Object.entries(conf).reduce((result, [name, value]) => {
+    /* eslint-disable no-param-reassign */
+    result[name] = `${value}px`;
+    return result;
+  }, {});
 
 const colors = {
   transparent: "transparent",
@@ -180,7 +180,7 @@ module.exports = {
   | Class name: .{screen}:{utility}
   |
   */
-  screensAbsolute: screensAbsolute,
+  screensAbsolute,
   screens: getScreens(screensAbsolute),
 
   /*
