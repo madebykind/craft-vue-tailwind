@@ -45,34 +45,49 @@ const gitFlowRelease = (releaseType) => {
 };
 
 
-inquirer.prompt([
-  {
-    type: "list",
-    name: "releaseType",
-    message: "What type of release is this?",
-    choices: [
-      "patch",
-      "minor",
-      "major",
-      "prerelease"
-    ],
-    default: "patch",
-  },{
-    type: "confirm",
-    name: "confirmed",
-    message({ releaseType }) {
-      return `You selected ${releaseType}. The new version number will be ${newVersion(releaseType)}. Does that look correct?`;
-    },
-  }
-]).then(({ confirmed, releaseType }) => {
+const release = () => {
 
-  if (confirmed) {
-    gitFlowRelease(releaseType);
-  } else {
-    console.log(`Version number rejected, exiting`.red);
-    process.exit(1);
+  const currentBranch = shell.exec(`git branch | grep \* | cut -d ' ' -f2`);
+
+  if (currentBranch !== 'develop') {
+    console.log(`This command must be run from the develop branch`.red);
+
+    shell.exit(1);
   }
+
+
+  inquirer.prompt([
+    {
+      type: "list",
+      name: "releaseType",
+      message: "What type of release is this?",
+      choices: [
+        "patch",
+        "minor",
+        "major",
+        "prerelease"
+      ],
+      default: "patch",
+    },{
+      type: "confirm",
+      name: "confirmed",
+      message({ releaseType }) {
+        return `You selected ${releaseType}. The new version number will be ${newVersion(releaseType)}. Does that look correct?`;
+      },
+    }
+  ]).then(({ confirmed, releaseType }) => {
+
+    if (confirmed) {
+      gitFlowRelease(releaseType);
+    } else {
+      console.log(`Version number rejected, exiting`.red);
+      shell.exit(1);
+    }
 });
+
+}
+
+release();
 
 
 // echo "Starting release $version"
