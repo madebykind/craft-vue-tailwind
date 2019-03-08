@@ -6,10 +6,11 @@
 //
 // see /scripts/project/apply-env for how this gets applied to a project instance
 
+require("dotenv").config();
+require("colors");
+
 const jsonfile = require("jsonfile");
 const inquirer = require("inquirer");
-
-require("colors");
 
 const pkg = jsonfile.readFileSync("package.json");
 
@@ -66,7 +67,7 @@ const applySettingsToPackage = (answers) => {
 
   console.log("Success! config saved".green);
   console.log("NB the config is not applied automatically. Run ",
-            "./scripts/project/apply-env".green,
+            "yarn project:apply-env".green,
             " to apply your new configuration");
 }
 
@@ -95,6 +96,12 @@ inquirer.prompt([
       name: "projectCraftDomain",
       message: "What local domain shall we use for the craft site?",
       default: ({ projectHandle }) => `${projectHandle}.craft.localdev`,
+    },
+    {
+      type: "input",
+      name: "adminEmail",
+      message: "What email address should we use for the first admin user for the craft site?",
+      default: () => process.env.CRAFT_CATCH_ALL_EMAIL_ADDRESS,
     },
     {
       type: "input",
@@ -131,7 +138,7 @@ inquirer.prompt([
     //       checked: true,
     //     },
     //   ],
-    },
+    // },
   ]).then(answers => {
 
     applySettingsToPackage(answers);
