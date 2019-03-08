@@ -12,6 +12,7 @@
     "lint:autofix": "vue-cli-service lint --fix",
     "lint:config-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "project:configure": "./scripts/project/configure",
+    "project:after-install": "./scripts/project/after-install",
     "project:apply-env": "./scripts/project/apply-env",
     "serve": "concurrently \"vue-cli-service serve\" \"fractal start\"",
     "serve:assets": "vue-cli-service serve",

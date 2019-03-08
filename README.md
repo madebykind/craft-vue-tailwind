@@ -28,6 +28,7 @@ Via the combined magic of [composer](https://getcomposer.org/) and [vue-cli](htt
 - Lint-on-save with ESLint
 - Source maps
 - Fractal living styleguide with asset sync
+- Load styleguide twig templates in Craft by prefixing include name with `@`
 
 
 ## Requirements
@@ -61,10 +62,13 @@ brew install php composer node yarn git git-flow
 # create & install project
 composer create-project madebykind/craft-vue-tailwind <path>
 cd <path>
+# install deps and basic setup
+./scripts/project/after-install
 # customise the project and install craft
 yarn project:configure
 # apply environment settings
-yarn project:apply-env # apply environment settings
+yarn project:apply-env
+
 ```
 
 ## Getting an existing project running
@@ -72,8 +76,10 @@ yarn project:apply-env # apply environment settings
 ```bash
 git clone <project-git-url> <path>
 cd <path>
-yarn project:apply-env
+# install deps and basic setup
 ./scripts/project/after-install
+# apply environment settings
+yarn project:apply-env
 ```
 
 ## Accessing the CraftCMS database
@@ -158,12 +164,14 @@ In order for the UI to work`vue-cli` requires you to run the project on it's def
 
 This project automates a *lot* of dull manual tasks. If you want to understand what's going on, here's a quick rundown
 
-1. After composer creates the project, it runs it's `post-create-project-cmd`, which:
+1. After composer creates the project, it runs the `post-create-project-cmd` script, which:
 
 - sets up your .env file
 - replaces the project's composer.json with one that's specific for your project
 - cleans up some files that aren't needed
 - dumps composer's autoloader
+- runs `scripts/project/after-install` which then...
+  -
 
 ## How asset loading works
 

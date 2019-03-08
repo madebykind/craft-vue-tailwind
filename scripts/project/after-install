@@ -6,19 +6,11 @@ if [ ! -f ./.env ]; then
     cp ./.env.example ./.env
 fi
 
-# clean up
-rm ./LICENSE.md
-rm ./composer.json
-mv ./composer.json.default ./composer.json
-
 # install PHP deps
 composer install
 
 # install node deps
 yarn
-
-# Generate component map
-yarn build:components
 
 # configure craft
 nanobox run ./scripts/project/nanobox-after-install
