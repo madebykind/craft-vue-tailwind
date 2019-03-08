@@ -18,7 +18,7 @@
   },
   "scripts": {
     "post-root-package-install": [
-      "@./scripts/project/after-install.sh",
+      "@./scripts/project/after-install"
     ]
   },
   "repositories": [
