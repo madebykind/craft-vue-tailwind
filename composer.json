@@ -49,8 +49,7 @@
       "git init",
       "scripts/project/after-install",
       "php -r \"unlink('composer.json');\"",
-      "php -r \"rename('composer.json.default', 'composer.json');\"",
-      "git add . && git commit -m 'initial commit'"
+      "php -r \"rename('composer.json.default', 'composer.json');\""
     ]
   }
 }
