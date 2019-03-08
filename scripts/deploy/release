@@ -48,9 +48,9 @@ const gitFlowRelease = (releaseType) => {
 
 const release = () => {
 
-  const currentBranch = shell.exec(`git branch | grep \* | cut -d ' ' -f2`);
+  const { stdout: currentBranch, } = shell.exec(`git symbolic-ref --short HEAD`, { silent: true });
 
-  if (currentBranch !== 'develop') {
+  if (currentBranch.trim() !== 'develop') {
     console.log(`This command must be run from the develop branch`.red);
 
     shell.exit(1);
