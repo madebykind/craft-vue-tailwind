@@ -14,6 +14,7 @@
     "project:configure": "./scripts/project/configure",
     "project:after-install": "./scripts/project/after-install",
     "project:apply-env": "./scripts/project/apply-env",
+    "project:setup-craft": "nanobox run ./scripts/project/nanobox-after-install",
     "serve": "concurrently \"vue-cli-service serve\" \"fractal start\"",
     "serve:assets": "vue-cli-service serve",
     "serve:craft": "nanobox run php-server",
