@@ -12,7 +12,7 @@
 // Ensure our urls have the right scheme
 define('URI_SCHEME', getenv('FORCE_SSL') ? "https://" : "http://" );
 
-define('SITE_URL', URI_SCHEME . getenv('SITE_HOSTNAME') . '/');
+define('SITE_URL', URI_SCHEME . getenv('DEFAULT_SITE_URL') . '/');
 
 return [
     // Global settings

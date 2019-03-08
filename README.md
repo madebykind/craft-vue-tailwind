@@ -69,7 +69,7 @@ yarn project:configure
 # apply environment settings
 yarn project:apply-env
 # install Craft
-nanobox run ./scripts/project/nanobox-after-install
+yarn project:setup-craft
 
 ```
 
@@ -80,10 +80,9 @@ git clone <project-git-url> <path>
 cd <path>
 # install deps and basic setup
 ./scripts/project/after-install
-# apply environment settings
-yarn project:apply-env
 # install Craft
-nanobox run ./scripts/project/nanobox-after-install
+yarn project:setup-craft
+
 ```
 
 ## Accessing the CraftCMS database

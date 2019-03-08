@@ -1,9 +1,25 @@
 #!/bin/bash
 
 # Run in the Nanobox container to set up craft
-#
-./craft setup/welcome
-./craft install/craft
-./craft migrate/all
-./craft install/plugin fractal
-./craft install/plugin assetrev
+
+test -z "$VAR" && test -f .env && \
+    VAR=$(grep -e '^VAR=.*' .env | cut -d '=' -f2)
+
+printenv
+
+# ./craft setup/welcome
+
+# echo "Installing Craft, please set a control panel admin password"
+# ./craft install/craft
+# ./craft migrate/all
+# ./craft install/plugin fractal
+# ./craft install/plugin assetrev
+
+
+
+# username
+# email
+# password
+# siteName
+# siteUrl
+# language
