@@ -72,8 +72,7 @@ yarn project:apply-env # apply environment settings
 ```bash
 git clone <project-git-url> <path>
 cd <path>
-composer
-yarn project:apply-env
+./scripts/project/after-install
 ```
 
 ## Accessing the CraftCMS database
