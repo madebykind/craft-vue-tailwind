@@ -79,13 +79,5 @@
     "vue-cli-plugin-svg-sprite": "^0.3.1",
     "vue-template-compiler": "^2.5.16",
     "webpack-manifest-plugin": "^2.0.3"
-  },
-  "kindConfig": {
-    "title": "dfgdsfgsdfg",
-    "craftDomain": "dfgdsfgsdfg.craft.localdev",
-    "ports": {
-      "assets": 8846,
-      "fractal": 4936
-    }
   }
 }
