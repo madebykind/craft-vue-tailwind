@@ -1,4 +1,14 @@
 #!/usr/bin/env node
+
+// This script:
+// - Reads the shared project config from the `kindConfig` key in the project's package.json
+// - Uses that data to set a local nanobox DNS alias for the CraftCMS install
+// - and environment variables (via .env) for
+// -- ASSET_SERVER_PORT
+// -- FRACTAL_SERVER_PORT
+// -- SITE_HOSTNAME
+// -- SITE_NAME
+
 const util = require("util");
 const fs = require("fs");
 const path = require("path");
@@ -14,7 +24,8 @@ const dotEnvPath = path.resolve(__dirname, "../../.env");
 const dotEnvExamplePath = path.resolve(__dirname, "../../.env.example");
 
 if (!pkg.kindConfig) {
-  console.error("Error: looks like this project hasn't been configured yet".red);
+  console.error("Error: looks like this project hasn't been configured yet, is this a new project?".red);
+  console.error("Is this a new project? If so you should run `yarn project:configure` first".yellow);
   process.exit();
 }
 

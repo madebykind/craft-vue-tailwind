@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+
+// This script:
+// - Interactively collects configuration information from the user
+// - Stores that data in the the `kindConfig` key in the project's package.json
+//
+// see /scripts/project/apply-env for how this gets applied to a project instance
+
 const jsonfile = require("jsonfile");
 const inquirer = require("inquirer");
 
