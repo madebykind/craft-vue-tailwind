@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+
+// Creates a new semver release, tag it and push to origin
+
 require("dotenv").config();
 require("colors");
 
@@ -40,7 +43,6 @@ const gitFlowRelease = (releaseType) => {
     shell.exec(`git commit -m "bump version to ${version}"`);
     shell.exec(`git flow release finish -p -m "${version}" ${version}`);
     shell.exit(0);
-    // shell.exec(`git flow release publish ${version}`);
   }
 };
 
