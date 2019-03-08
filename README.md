@@ -190,6 +190,13 @@ This boilerplate uses babel-preset-env for configuring babel. [You can read more
 You can enable linting by adding the `@vue/cli-plugin-eslint` plugin through the GUI `vue ui`.
 
 
+## Roadmap
+
+[ ] BUG fix asset loading for built styleguide
+[ ] Stylelinting with stylelint
+[ ] Screenshot diff testing with Backstop.js
+
+
 ## Thanks
 
 Forked from [chasegiunta/craft-vue-tailwind](https://github.com/chasegiunta/craft-vue-tailwind)

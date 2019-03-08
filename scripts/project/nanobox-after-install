@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Run in the Nanobox container to set up craft
+#
+./craft setup/welcome
 ./craft install/craft
 ./craft migrate/all
 ./craft install/plugin fractal

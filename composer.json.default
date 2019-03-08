@@ -18,10 +18,7 @@
   },
   "scripts": {
     "post-root-package-install": [
-      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-      "@nanobox run ./nanobox-post-install.sh",
-      "@git init",
-      "@git flow init"
+      "@./scripts/project/after-install.sh",
     ]
   },
   "repositories": [
