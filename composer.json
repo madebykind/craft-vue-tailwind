@@ -47,7 +47,6 @@
       "php -r \"unlink('LICENSE.md');\"",
       "composer dump-autoload -o",
       "git init",
-      "scripts/project/after-install",
       "php -r \"unlink('composer.json');\"",
       "php -r \"rename('composer.json.default', 'composer.json');\""
     ]

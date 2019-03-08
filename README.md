@@ -64,10 +64,12 @@ composer create-project madebykind/craft-vue-tailwind <path>
 cd <path>
 # install deps and basic setup
 ./scripts/project/after-install
-# customise the project and install craft
+# customise the project
 yarn project:configure
 # apply environment settings
 yarn project:apply-env
+# install Craft
+nanobox run ./scripts/project/nanobox-after-install
 
 ```
 
@@ -80,6 +82,8 @@ cd <path>
 ./scripts/project/after-install
 # apply environment settings
 yarn project:apply-env
+# install Craft
+nanobox run ./scripts/project/nanobox-after-install
 ```
 
 ## Accessing the CraftCMS database

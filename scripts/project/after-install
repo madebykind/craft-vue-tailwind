@@ -12,8 +12,5 @@ composer install
 # install node deps
 yarn
 
-# configure craft
-nanobox run ./scripts/project/nanobox-after-install
-
 # git-flow
 git flow init
