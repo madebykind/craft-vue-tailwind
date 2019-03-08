@@ -83,12 +83,12 @@ inquirer.prompt([
       name: "projectHandle",
       message: "What should we use as the handle for this project?",
       default: ({ projectTitle }) => dashCase(projectTitle),
-    },,
+    },
     {
       type: "input",
       name: "siteName",
       message: "What should we use as the Site Name for this project?",
-      default: ({ siteName }) => siteName,
+      default: ({ projectTitle }) => projectTitle,
     },
     {
       type: "input",
@@ -113,24 +113,24 @@ inquirer.prompt([
                           ? true
                           : "Enter an integer value of 8080 or above",
     },
-    {
-      type: "confirm",
-      name: "installCraft",
-      message: "Would you like me to run the Craft installer for you?",
-    },
-    {
-      type: "checkbox",
-      name: "installCraftPlugins",
-      message: "Would you like me to install default Craft plugins?",
-      choices: [
-        {
-          name: "assetrev",
-          checked: true,
-        }, {
-          name: "fractal",
-          checked: true,
-        },
-      ],
+    // {
+    //   type: "confirm",
+    //   name: "installCraft",
+    //   message: "Would you like me to run the Craft installer for you?",
+    // },
+    // {
+    //   type: "checkbox",
+    //   name: "installCraftPlugins",
+    //   message: "Would you like me to install default Craft plugins?",
+    //   choices: [
+    //     {
+    //       name: "assetrev",
+    //       checked: true,
+    //     }, {
+    //       name: "fractal",
+    //       checked: true,
+    //     },
+    //   ],
     },
   ]).then(answers => {
 
