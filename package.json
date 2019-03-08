@@ -4,22 +4,26 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build && fractal build",
-    "build:fractal": "fractal build",
+    "build": "vue-cli-service build && fractal build && yarn build:components",
     "build:components": "fractal pathmap",
+    "build:fractal": "fractal build",
     "generate:component": "hygen fractal-component new",
-    "dev": "vue-cli-service serve",
-    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "lint": "vue-cli-service lint",
-    "lint-autofix": "vue-cli-service lint --fix",
+    "lint:autofix": "vue-cli-service lint --fix",
+    "lint:config-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "project:configure": "./scripts/project/configure",
+    "project:apply-env": "./scripts/project/apply-env",
     "serve": "concurrently \"vue-cli-service serve\" \"fractal start\"",
+    "serve:assets": "vue-cli-service serve",
+    "serve:craft": "nanobox run php-server",
+    "serve:fractal": "fractal start",
+    "test:coverage": "jest --coverage",
     "test:unit": "vue-cli-service test:unit",
-    "test:watch": "vue-cli-service test:unit --watch",
-    "test:coverage": "jest --coverage"
+    "test:watch": "vue-cli-service test:unit --watch"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint-autofix",
+      "pre-commit": "yarn lint:autofix",
       "pre-push": "yarn lint && yarn test:unit"
     }
   },

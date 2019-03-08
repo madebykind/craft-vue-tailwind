@@ -1,10 +1,77 @@
 # craft-vue-tailwind
 
-Fork of the [craft-vue](https://github.com/chasegiunta/craft-vue) template that integrates the Tailwind CSS utility framework & removes unused CSS with Purgecss.
+Fork of [craft-vue-tailwind](https://github.com/chasegiunta/craft-vue) composer project template that integrates:
+
+- [Nanobox](https://nanobox.io/) for development environments
+- [git-flow](https://github.com/nvie/gitflow) as a branching/release strategy
+- [CraftCMS](https://craftcms.com/) for content management
+- [Fractal](https://fractal.build/) as a living styleguide
+- [Tailwind](https://tailwindcss.com/) utility first CSS framework
+- [Purgecss](https://www.purgecss.com/) for build optimisation
+- [Jest](https://jestjs.io/) for front end unit tests
+- [Vuejs](https://vuejs.org/) for fancypants JavaScript stuff
+- [Husky](https://github.com/typicode/husky) for git hooks
+- [Hygen](https://www.hygen.io/) for scaffolding components
+- [eslint](https://eslint.org/) & [Prettier](https://prettier.io/) for linting and code formatting
+
+Via the combined magic of [composer](https://getcomposer.org/) and [vue-cli](https://cli.vuejs.org/) to give you an all singing, all dancing, pre-configured dev environment
+
+## Requirements
+
+This template requires the following software / packages to be installed in the host machine
+
+- [Nanobox](https://dashboard.nanobox.io/download) (requiress free account signup)
+- PHP 7.3
+- [Composer](https://getcomposer.org/)
+- [Node.js](https://nodejs.org/)
+- [Yarn](https://yarnpkg.com/)
+- [vue-cli](https://cli.vuejs.org/)
+
+Installing on a new machine? Not actually a developer? Install homebrew and then grab all the above apart from Nanobox at once:
+
+```sh
+brew install php composer node yarn git-flow
+
+```
+
+## Creating a new project
+
+```
+composer create-project madebykind/craft-vue-tailwind <path>
+cd <path>
+yarn project:configure # customise the project
+yarn project:apply-env # apply environment settings
+```
+
+## Getting an existing project running
+
+```
+git clone <project-git-url> <path>
+cd <path>
+composer
+yarn project:apply-env
+```
+
+
+**NB if installing Nanobox for the first time be sure to follow the post-install instructions for recent versions of macOS**
+
+
+## Dev workflow...
+
+```
+# run each of these in their own terminal pane
+yarn serve
+yarn test:watch
+yarn serve:craft
+```
+
 
 ## What's Included
 
-- `npm run dev` / `yarn dev`: first-in-class development experience.
+
+### Dev environment
+
+- `yarn serve`: first-in-class development experience.
 
   - Webpack + `vue-loader` for single file Vue components
   - State preserving hot-reload
@@ -12,14 +79,49 @@ Fork of the [craft-vue](https://github.com/chasegiunta/craft-vue) template that 
   - State preserving compilation error overlay
   - Lint-on-save with ESLint
   - Source maps
+  - Fractal living styleguide with asset sync
+  - NB by default this does not start the craft/PHP server, as you will often want this to run in another process, see `serve:craft` for a command for this
 
-- `npm run build` / `yarn build`: Production ready build.
+- `yarn serve:assets`
+  - start the dev server above but without fractal running
+
+- `yarn serve:fractal`
+  - start the fractal server
+
+- `yarn serve:craft`
+  - start the nanobox container that serves craft
+
+### Linting
+
+- `lint`
+  - what you'd expect
+- `lint:autofix`
+  - Lint and fix automatically where possible
+- `lint:config-check`
+  - check the eslint config for rules that conflict with prettier
+
+### Tests
+
+- `test:unit`
+  - run the unit tests (happens automatically pre-push)
+- `test:watch`
+  - run the tests on code change
+- `test:coverage`
+  - calc code coverage stats
+
+
+### Building for production
+
+- `yarn build`: Production ready build.
   - JavaScript minification with [UglifyJS v3](https://github.com/mishoo/UglifyJS2/tree/harmony)
   - Babel compiling
   - CSS across all components extracted into a single file and minified with [cssnano](https://github.com/ben-eb/cssnano)
   - Static assets compiled with version hashes for efficient long-term caching
   - Removes unused CSS with Purgecss. Includes whitelister to keep third-party libraries untouched.
   - Bundle size analytics
+  - Builds the styleguide to static HTML
+
+
 
 ### Fork It And Make Your Own
 
@@ -86,3 +188,8 @@ This boilerplate uses babel-preset-env for configuring babel. [You can read more
 ## Linting
 
 You can enable linting by adding the `@vue/cli-plugin-eslint` plugin through the GUI `vue ui`.
+
+
+## Thanks
+
+Forked from [chasegiunta/craft-vue-tailwind](https://github.com/chasegiunta/craft-vue-tailwind)
