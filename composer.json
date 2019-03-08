@@ -44,12 +44,12 @@
   },
   "scripts": {
     "post-create-project-cmd": [
-      "php -r \"unlink('composer.json');\"",
       "php -r \"unlink('LICENSE.md');\"",
-      "php -r \"rename('composer.json.default', 'composer.json');\"",
       "composer dump-autoload -o",
       "git init",
-      "./scripts/project/after-install",
+      "scripts/project/after-install",
+      "php -r \"unlink('composer.json');\"",
+      "php -r \"rename('composer.json.default', 'composer.json');\"",
       "git add . && git commit -m 'initial commit'"
     ]
   }
