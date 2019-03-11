@@ -1,9 +1,9 @@
 require("dotenv").config();
+require("colors");
 
 const path = require("path");
 const fs = require("fs");
-
-require("colors");
+const ip = require('ip');
 
 /* Create a new Fractal instance and export it for use elsewhere if required */
 const fractal = require("@frctl/fractal").create();
@@ -65,6 +65,9 @@ fractal.components.engine(
     functions: {
       assetPort() {
         return process.env.ASSET_SERVER_PORT;
+      },
+      assetHostname() {
+        return ip.address();
       },
     },
   })

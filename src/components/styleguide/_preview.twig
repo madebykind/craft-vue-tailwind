@@ -8,6 +8,6 @@
 </head>
 <body>
   {{ yield }}
-<script src="http://localhost:{{ assetPort() }}/app.js"></script>
+<script src="http://{{ assetHostname() }}:{{ assetPort() }}/app.js"></script>
 </body>
 </html>
