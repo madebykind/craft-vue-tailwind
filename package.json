@@ -1,15 +1,16 @@
 {
   "name": "craft-vue-tailwind",
   "title": "Craft Vue Tailwind",
-  "version": "3.0.3",
+  "version": "3.1.0",
   "private": true,
   "scripts": {
     "build": "vue-cli-service build && fractal build && yarn build:components",
     "build:components": "fractal pathmap",
     "build:fractal": "fractal build",
     "generate:component": "hygen fractal-component new",
-    "lint": "vue-cli-service lint",
-    "lint:autofix": "vue-cli-service lint --fix",
+    "lint": "concurrently \"vue-cli-service lint --fix && vue-cli-service lint:style\"",
+    "lint:js": "vue-cli-service lint --fix",
+    "lint:styles": "vue-cli-service lint:style",
     "lint:config-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "project:release": "./scripts/deploy/release",
     "project:configure": "./scripts/project/configure",
@@ -26,11 +27,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint:autofix",
-      "pre-push": "yarn lint && yarn test:unit"
+      "pre-commit": "yarn lint",
+      "pre-push": "yarn test:unit"
     }
   },
   "dependencies": {
+    "@ascendancyy/vue-cli-plugin-stylelint": "^1.1.2",
     "@babel/core": "^7.0.0-0",
     "@frctl/fractal": "^1.1.7",
     "@frctl/mandelbrot": "^1.2.0",
@@ -43,6 +45,7 @@
     "dotenv": "^6.2.0",
     "postcss-import": "^12.0.0",
     "postcss-preset-env": "^6.5.0",
+    "postcss-reporter": "^6.0.1",
     "tailwindcss": "^0.7.3",
     "vue": "^2.5.16",
     "webpack": "^4.4.0"
@@ -77,6 +80,8 @@
     "purgecss-whitelister": "^2.1.0",
     "randomatic": "^3.1.1",
     "sane": "^3.0.0",
+    "stylelint-config-idiomatic-order": "^6.2.0",
+    "stylelint-config-standard": "^18.2.0",
     "svgo": "^1.1.0",
     "svgo-loader": "^2.1.0",
     "twig": "^1.13.2",

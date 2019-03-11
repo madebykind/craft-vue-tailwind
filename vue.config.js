@@ -8,6 +8,7 @@ const postcssPresetEnv = require("postcss-preset-env");
 const tailwindcss = require("tailwindcss");
 const postcssPurgecss = require("@fullhuman/postcss-purgecss");
 const postcssNested = require("postcss-nested");
+const postcssReporter = require("postcss-reporter");
 
 require("colors");
 
@@ -17,7 +18,7 @@ const isHotReloaded = process.argv.includes("serve");
 
 if (!pkg.kindConfig) {
   console.error("Error: looks like this project hasn't been configured yet".red);
-  console.info("run ./scripts/project/configure to get started");
+  console.info("run `yarn project:configure` to get started");
   process.exit();
 }
 
@@ -65,6 +66,7 @@ const postCssPlugins = [
   postcssPresetEnv({ stage: 2 }),
   tailwindcss("./tailwind.config.js"),
   postcssNested({ unwrap: ["screen"] }),
+  postcssReporter({ clearReportedMessages: true }),
 ];
 
 if (!isHotReloaded) {
@@ -92,7 +94,6 @@ postCssPlugins.push(autoprefixer());
 
 module.exports = {
   runtimeCompiler: false,
-
   outputDir: "web/dist",
   filenameHashing: process.env.NODE_ENV === "production",
 
@@ -104,6 +105,7 @@ module.exports = {
       },
     },
   },
+
   devServer: {
     // Uncommenting these will lose the "Network" app access
     // host: config.host,
@@ -143,5 +145,14 @@ module.exports = {
     process.env.NODE_ENV === "production"
       ? "/"
       : `${config.https ? "https" : "http"}://${config.host}:${config.port}/`,
+
   productionSourceMap: true,
+
+  pluginOptions: {
+    lintStyleOnBuild: false,
+    stylelint: {
+      fix: true, // boolean (default: true)
+      files: ["src/**/*.{vue,htm,html,css,sss,less,scss,postcss}"],
+    },
+  },
 };
