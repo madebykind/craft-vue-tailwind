@@ -1,14 +1,15 @@
 require("dotenv").config();
+require("colors");
 
 const path = require("path");
 const fs = require("fs");
-
-require("colors");
+const ip = require("ip");
 
 /* Create a new Fractal instance and export it for use elsewhere if required */
 const fractal = require("@frctl/fractal").create();
 const mandelbrot = require("@frctl/mandelbrot");
 const twigAdapter = require("@frctl/twig");
+const jsonfile = require("jsonfile");
 
 const srcPath = path.resolve(__dirname, "src");
 const staticPath = path.resolve(__dirname, "web/dist");
@@ -19,6 +20,12 @@ if (!pkg.kindConfig) {
   console.error("Error: looks like this project hasn't been configured yet".red);
   process.exit();
 }
+
+const assetManifestPath = path.resolve(__dirname, "styleguide/dist/manifest.json");
+
+const assetManifest = fs.existsSync(assetManifestPath)
+  ? jsonfile.readFileSync(assetManifestPath)
+  : {};
 
 /**
  * Shared
@@ -38,6 +45,7 @@ fractal.components.set("path", path.join(srcPath, "components"));
 fractal.docs.set("path", path.join(srcPath, "docs"));
 // Where the generated static assets will be
 fractal.web.set("static.path", staticPath);
+fractal.web.set("static.mount", "dist");
 // Where to output the built styleguide
 fractal.web.set("builder.dest", path.resolve(__dirname, "styleguide"));
 
@@ -62,10 +70,13 @@ fractal.components.set("default.preview", "@preview");
 // Use twig
 fractal.components.engine(
   twigAdapter({
+    filters: {
+      rev: (filePath) => assetManifest[filePath] || filePath,
+    },
     functions: {
-      assetPort() {
-        return process.env.ASSET_SERVER_PORT;
-      },
+      assetPort: () => process.env.ASSET_SERVER_PORT,
+      assetHostname: () => ip.address(),
+      isBuild: () => process.argv.includes("build"),
     },
   })
 );
