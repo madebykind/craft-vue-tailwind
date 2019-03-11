@@ -78,6 +78,9 @@ yarn project:setup-craft
 ```bash
 git clone <project-git-url> <path>
 cd <path>
+# create .env
+cp .env.example .env
+
 # install deps and basic setup
 ./scripts/project/after-install
 # install Craft

@@ -1,25 +1,46 @@
-#!/bin/bash
+#!/usr/bin/env node
 
-# Run in the Nanobox container to set up craft
+// Runs in the Nanobox container to set up craft
+require("dotenv").config({path: '/app/.env'});
+require("colors");
 
-test -z "$VAR" && test -f .env && \
-    VAR=$(grep -e '^VAR=.*' .env | cut -d '=' -f2)
+const jsonfile = require("jsonfile");
+const shell = require('shelljs');
+const inquirer = require("inquirer");
 
-printenv
+const pkg = jsonfile.readFileSync("package.json");
 
-# ./craft setup/welcome
+if (!pkg.kindConfig) {
+  console.error("Error: looks like this project hasn't been configured yet".red);
+  console.error("Is this a new project? If so you should run `yarn project:configure` first".yellow);
+  process.exit(1);
+}
 
-# echo "Installing Craft, please set a control panel admin password"
-# ./craft install/craft
-# ./craft migrate/all
-# ./craft install/plugin fractal
-# ./craft install/plugin assetrev
+if (!process.env.SITE_NAME || !process.env.DEFAULT_SITE_URL) {
+  console.error(`Error: looks like this project's environment hasn't been configured yet`.red);
+  console.error("You probably need to run `yarn project:apply-env` in the host machine first".yellow);
+  process.exit(1);
+}
 
 
+const install = () => {
 
-# username
-# email
-# password
-# siteName
-# siteUrl
-# language
+  console.log(`Installing Craft`.green);
+
+  inquirer.prompt([
+    {
+      type: "input",
+      name: "password",
+      message: "Please set a control panel admin password (8 chars, minimum 1 number and 1 uppercase letter",
+      validate: (input) => input ? true : "A password is required",
+    }
+  ]).then(({ password }) => {
+    shell.exec(`./craft setup/welcome`);
+    shell.exec(`./craft install/craft --username=${pkg.kindConfig.adminEmail} --email=${pkg.kindConfig.adminEmail} --password=${password} --siteName=${process.env.SITE_NAME} --siteUrl=${process.env.DEFAULT_SITE_URL}
+      --language=en-GB`);
+    shell.exec(`./craft install/plugin fractal`);
+    shell.exec(`./craft install/plugin assetrev`);
+  })
+};
+
+install();
