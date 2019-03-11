@@ -20,7 +20,7 @@ to: src/components/<%= type %>s/<%= slug %>/<%= slug %>.twig
 {% set config = {} %}
 
 {% for prop in ['attrs', 'data', 'classList', 'modifiers']  %}
-  {% set config = config | merge({(prop): _context[prop] }) %}
+  {% set config = config | merge({(prop): _context[prop] ?? null }) %}
 {% endfor %}
 
 {% embed '@atom' with config | merge({
