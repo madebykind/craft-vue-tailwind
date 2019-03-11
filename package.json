@@ -1,7 +1,7 @@
 {
   "name": "craft-vue-tailwind",
   "title": "Craft Vue Tailwind",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "private": true,
   "scripts": {
     "build": "vue-cli-service build && fractal build && yarn build:components",
