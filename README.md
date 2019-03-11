@@ -68,7 +68,9 @@ cd <path>
 yarn project:configure
 # apply environment settings
 yarn project:apply-env
-# install Craft
+# install Craft in nanobox
+nanobox run
+# once you're inside the nanobox container
 yarn project:setup-craft
 
 ```
