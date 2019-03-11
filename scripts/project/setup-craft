@@ -1,0 +1,74 @@
+#!/usr/bin/env node
+
+// Runs in the Nanobox container to set up craft
+require("dotenv").config({path: '/app/.env'});
+require("colors");
+
+const jsonfile = require("jsonfile");
+const shell = require('shelljs');
+const randomize = require('randomatic');
+const inquirer = require("inquirer");
+
+const pkg = jsonfile.readFileSync("package.json");
+
+if (!pkg.kindConfig) {
+  console.error("Error: looks like this project hasn't been configured yet".red);
+  console.error("Is this a new project? If so you should run `yarn project:configure` first".yellow);
+  process.exit(1);
+}
+
+if (!process.env.SITE_NAME || !process.env.DEFAULT_SITE_URL) {
+  console.error(`Error: looks like this project's environment hasn't been configured yet`.red);
+  console.error("You probably need to run `yarn project:apply-env` in the host machine first".yellow);
+  process.exit(1);
+}
+
+if (process.env.HOME !== "/data/var/home/gonano") {
+  console.error(`Error: This command expects to be run inside a nanobox container`.red);
+  console.error("You probably need to run `nanobox run` in the host machine first".yellow);
+  process.exit(1);
+}
+
+
+
+const install = () => {
+  shell.exec(`./craft setup/welcome`);
+
+  console.log(`Installing Craft`.green);
+
+  const password = randomize('Aa0', 16);
+
+  console.log(`Generating password`.green);
+
+  console.log(`***************************************************************`.cyan);
+  console.log(`**                                                           **`.cyan);
+  console.log(`**`.cyan, `ENSURE YOU STORE THIS PASSWORD NOW!!!!!!                 `.red, `**`.cyan);
+  console.log(`**                                                           **`.cyan);
+  console.log(`**`.cyan, `you will not be able to access it again                  `.white, `**`.cyan);
+  console.log(`**                                                           **`.cyan);
+  console.log(`**`.cyan, password.yellow, `                                         **`.cyan);
+  console.log(`**                                                           **`.cyan);
+  console.log(`***************************************************************`.cyan);
+
+  inquirer.prompt([
+    {
+      type: "confirm",
+      name: "confirmed",
+      message: "Have you stored the password above?"
+    }
+  ]).then(({ confirmed }) => {
+
+    console.log(password);
+
+    if (confirmed) {
+      shell.exec(`./craft install/craft --username=${pkg.kindConfig.adminEmail} --email=${pkg.kindConfig.adminEmail} --password="${password}" --siteName="${process.env.SITE_NAME}" --siteUrl="${process.env.DEFAULT_SITE_URL}" --language=en-GB`);
+      shell.exec(`./craft install/plugin fractal`);
+      shell.exec(`./craft install/plugin assetrev`);
+    } else {
+      console.log(`Password not saved, exiting`.red);
+      shell.exit(1);
+    }
+  })
+};
+
+install();

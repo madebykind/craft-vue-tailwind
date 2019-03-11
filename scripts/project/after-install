@@ -11,6 +11,8 @@ composer install
 
 # install node deps
 yarn
+yarn build:components
+
 
 # git-flow
 git flow init

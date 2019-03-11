@@ -1,7 +1,7 @@
 {
   "name": "craft-vue-tailwind",
   "title": "Craft Vue Tailwind",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "private": true,
   "scripts": {
     "build": "vue-cli-service build && fractal build && yarn build:components",
@@ -15,7 +15,7 @@
     "project:configure": "./scripts/project/configure",
     "project:after-install": "./scripts/project/after-install",
     "project:apply-env": "./scripts/project/apply-env",
-    "project:setup-craft": "./scripts/project/nanobox-after-install",
+    "project:setup-craft": "./scripts/project/setup-craft",
     "serve": "concurrently \"vue-cli-service serve\" \"fractal start\"",
     "serve:assets": "vue-cli-service serve",
     "serve:craft": "nanobox run php-server",
@@ -75,6 +75,7 @@
     "prettier": "^1.16.4",
     "prettier-stylelint": "^0.4.2",
     "purgecss-whitelister": "^2.1.0",
+    "randomatic": "^3.1.1",
     "sane": "^3.0.0",
     "svgo": "^1.1.0",
     "svgo-loader": "^2.1.0",
