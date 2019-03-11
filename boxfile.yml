@@ -1,5 +1,7 @@
 run.config:
   engine: madebykind/nanobox-engine-php
+  extra_packages:
+    - nodejs
   engine.config:
     runtime: php-7.3
     document_root: web
