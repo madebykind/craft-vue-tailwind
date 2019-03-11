@@ -3,11 +3,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {# <link media="all" rel="stylesheet" href="{{ path '/example.css' }}"> #}
+    {% if isBuild() %}
+      <link media="all" rel="stylesheet" href="{{ 'app.css' | rev | path }}">
+    {% endif %}
     <title>Preview Layout</title>
 </head>
 <body>
   {{ yield }}
-<script src="http://{{ assetHostname() }}:{{ assetPort() }}/app.js"></script>
+  {% if isBuild() %}
+    <script src="{{ 'chunk-vendors.js' | rev | path }}"></script>
+    <script src="{{ 'app.js' | rev | path }}"></script>
+  {% else %}
+
+    <script src="http://{{ assetHostname() }}:{{ assetPort() }}/app.js"></script>
+  {% endif %}
 </body>
 </html>
