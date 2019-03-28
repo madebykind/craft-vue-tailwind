@@ -154,5 +154,12 @@ module.exports = {
       fix: true, // boolean (default: true)
       files: ["src/**/*.{vue,htm,html,css,sss,less,scss,postcss}"],
     },
+    svgSprite: {
+      loaderOptions: {
+        extract: true,
+        symbolId: (filePath) => `icon-${path.basename(filePath).replace(".svg", "")}`,
+        spriteFilename: 'img/icons.svg' // or 'img/icons.svg' if filenameHashing == false
+      },
+    },
   },
 };
