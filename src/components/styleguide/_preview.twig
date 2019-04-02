@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js sr">
-<head>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% if isBuild() %}
-      <link media="all" rel="stylesheet" href="{{ 'app.css' | rev | path }}">
-    {% endif %}
     <title>Preview Layout</title>
-</head>
-<body>
-  {{ yield }}
+  {% if isBuild() %}
+    <link media="all" rel="stylesheet" href="{{ 'app.css' | rev | path }}">
+  {% endif %}
+
+  {% set spritePath = isBuild()
+                      ? ('dist/img/icons.svg' | path)
+                      : 'http://' ~ assetHostname() ~ ':' ~ assetPort() ~ '/img/icons.svg'
+                        %}
+  {# Ajax in SVG sprite #}
+  <script>
+    window.APP = {
+      modules: {},
+      addModule: function(name, config) {
+        this.modules[name] = this.modules[name] || [];
+        this.modules[name].push(config);
+      },
+      CONFIG: {},
+    };
+    (function(){
+      var ajax = new XMLHttpRequest();
+      ajax.open("GET", "{{ spritePath }}", true);
+      ajax.send();
+      ajax.onload = function(e) {
+        var div = document.createElement("div");
+        div.hidden = true;
+        div.innerHTML = ajax.responseText;
+        document.body.insertBefore(div, document.body.childNodes[0]);
+      }
+    }());
+    </script>
+  </head>
+  <body>
+    {{ yield }}
   {% if isBuild() %}
     <script src="{{ 'chunk-vendors.js' | rev | path }}"></script>
     <script src="{{ 'app.js' | rev | path }}"></script>
   {% else %}
-
     <script src="http://{{ assetHostname() }}:{{ assetPort() }}/app.js"></script>
   {% endif %}
-</body>
+  </body>
 </html>
