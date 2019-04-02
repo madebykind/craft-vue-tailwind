@@ -40,6 +40,7 @@ const config = {
       /-(leave|enter|appear)(|-(to|from|active))$/,
       /^(?!(|.*?:)cursor-move).+-move$/,
       /^router-link(|-exact)-active$/,
+      /--/,
     ],
     cssFileExtensions: ["css", "less", "pcss", "postcss", "sass", "scss", "styl"],
     cssUserFileExtensions: ["html", "twig", "vue", ""],
@@ -72,7 +73,11 @@ const postCssPlugins = [
 if (!isHotReloaded) {
   postCssPlugins.push(
     postcssPurgecss({
-      content: [`./@(web|src)/**/*.@(${config.purgecss.cssUserFileExtensions.join("|")})`],
+      content: [
+        `./src/**/*.@(${config.purgecss.cssUserFileExtensions.join("|")})`,
+        `./templates/**/*.@(${config.purgecss.cssUserFileExtensions.join("|")})`,
+        `./web/**/*.@(${config.purgecss.cssUserFileExtensions.join("|")})`,
+      ],
       css: [`./src/**/*.@(${config.purgecss.cssFileExtensions.join("|")})`],
       extractors: [
         {
