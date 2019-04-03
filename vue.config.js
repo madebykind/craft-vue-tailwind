@@ -10,6 +10,7 @@ const postcssPurgecss = require("@fullhuman/postcss-purgecss");
 const postcssNested = require("postcss-nested");
 const postcssImport = require("postcss-import");
 const postcssResolver = require("postcss-import-resolver");
+const postcssAssets = require("postcss-assets");
 const postcssReporter = require("postcss-reporter");
 
 require("colors");
@@ -78,6 +79,10 @@ const postCssPlugins = [
   postcssPresetEnv({ stage: 2 }),
   tailwindcss("./tailwind.config.js"),
   postcssNested({ unwrap: ["screen"] }),
+  postcssAssets({
+    loadPaths: ["src/assets/images/", "src/assets/fonts/"],
+    relative: true,
+  }),
   postcssReporter({ clearReportedMessages: true }),
 ];
 
