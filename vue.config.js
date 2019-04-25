@@ -18,6 +18,7 @@ require("colors");
 const pkg = require("./package.json");
 
 const isHotReloaded = process.argv.includes("serve");
+const isProduction = process.env.NODE_ENV === "production";
 
 if (!pkg.kindConfig) {
   console.error("Error: looks like this project hasn't been configured yet".red);
@@ -116,7 +117,7 @@ postCssPlugins.push(autoprefixer());
 module.exports = {
   runtimeCompiler: false,
   outputDir: "web/dist",
-  filenameHashing: process.env.NODE_ENV === "production",
+  filenameHashing: isProduction,
 
   css: {
     sourceMap: true,
@@ -162,10 +163,7 @@ module.exports = {
     conf.plugins.delete("prefetch");
   },
 
-  publicPath:
-    process.env.NODE_ENV === "production"
-      ? "/"
-      : `${config.https ? "https" : "http"}://${config.host}:${config.port}/`,
+  publicPath: isProduction ? "/" : `${config.https ? "https" : "http"}://${config.host}:${config.port}/`,
 
   productionSourceMap: true,
 
@@ -174,6 +172,13 @@ module.exports = {
     stylelint: {
       fix: true, // boolean (default: true)
       files: ["src/**/*.{vue,htm,html,css,sss,less,scss,postcss}"],
+    },
+    svgSprite: {
+      loaderOptions: {
+        extract: true,
+        symbolId: (filePath) => `icon-${path.basename(filePath).replace(".svg", "")}`,
+        spriteFilename: isProduction ?  "img/icons.[hash:8].svg" : "img/icons.svg",
+      },
     },
   },
 };

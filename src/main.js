@@ -1,6 +1,9 @@
+import svg4everybody from "svg4everybody";
 import Vue from "vue";
-import "./components";
+
 import "./assets/styles/app.postcss";
+import "@/lib/svg-sprite";
+import init from "@/lib/init";
 
 Vue.config.productionTip = false;
 
@@ -10,3 +13,10 @@ Vue.config.productionTip = false;
 //     return h(App);
 //   },
 // });
+
+
+window.addEventListener("DOMContentLoaded",
+  () => init(window.GROW, {})
+    .then(() => svg4everybody())
+
+);
