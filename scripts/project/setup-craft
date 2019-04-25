@@ -63,6 +63,7 @@ const install = () => {
     if (confirmed) {
       shell.exec(`./craft install/craft --username=${pkg.kindConfig.adminEmail} --email=${pkg.kindConfig.adminEmail} --password="${password}" --siteName="${process.env.SITE_NAME}" --siteUrl="${process.env.DEFAULT_SITE_URL}" --language=en-GB`);
       shell.exec(`./craft install/plugin fractal`);
+      shell.exec(`./craft install/plugin amcommand`);
       shell.exec(`./craft install/plugin assetrev`);
     } else {
       console.log(`Password not saved, exiting`.red);
