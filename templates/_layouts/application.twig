@@ -1,7 +1,8 @@
-{% spaceless %}
-{% header "Cache-Control: no-cache" %}
-{% header "Pragma: no-cache" %}
-{% endspaceless %}<!DOCTYPE html>
+{%- header 'X-Frame-Options: SAMEORIGIN' -%}
+{%- header 'X-XSS-Protection: 1; mode=block' -%}
+{%- header 'X-Content-Type-Options: nosniff' -%}
+{%- header 'Referrer-Policy: same-origin' -%}
+<!DOCTYPE html>
 <html lang="en" class="no-js sr">
 <head>
   <meta charset="utf-8">
