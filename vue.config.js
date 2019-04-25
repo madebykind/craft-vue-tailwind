@@ -8,6 +8,9 @@ const postcssPresetEnv = require("postcss-preset-env");
 const tailwindcss = require("tailwindcss");
 const postcssPurgecss = require("@fullhuman/postcss-purgecss");
 const postcssNested = require("postcss-nested");
+const postcssImport = require("postcss-import");
+const postcssResolver = require("postcss-import-resolver");
+const postcssAssets = require("postcss-assets");
 const postcssReporter = require("postcss-reporter");
 
 require("colors");
@@ -15,6 +18,7 @@ require("colors");
 const pkg = require("./package.json");
 
 const isHotReloaded = process.argv.includes("serve");
+const isProduction = process.env.NODE_ENV === "production";
 
 if (!pkg.kindConfig) {
   console.error("Error: looks like this project hasn't been configured yet".red);
@@ -40,6 +44,7 @@ const config = {
       /-(leave|enter|appear)(|-(to|from|active))$/,
       /^(?!(|.*?:)cursor-move).+-move$/,
       /^router-link(|-exact)-active$/,
+      /--/,
     ],
     cssFileExtensions: ["css", "less", "pcss", "postcss", "sass", "scss", "styl"],
     cssUserFileExtensions: ["html", "twig", "vue", ""],
@@ -63,16 +68,33 @@ class TailwindVueExtractor {
 }
 
 const postCssPlugins = [
+  postcssImport({
+    resolve: postcssResolver({
+      alias: {
+        "@": path.resolve(__dirname, "src"),
+      },
+      extensions: [".css", ".postcss"],
+      modules: ["node_modules"],
+    }),
+  }),
   postcssPresetEnv({ stage: 2 }),
   tailwindcss("./tailwind.config.js"),
   postcssNested({ unwrap: ["screen"] }),
+  postcssAssets({
+    loadPaths: ["src/assets/images/", "src/assets/fonts/"],
+    relative: true,
+  }),
   postcssReporter({ clearReportedMessages: true }),
 ];
 
 if (!isHotReloaded) {
   postCssPlugins.push(
     postcssPurgecss({
-      content: [`./@(web|src)/**/*.@(${config.purgecss.cssUserFileExtensions.join("|")})`],
+      content: [
+        `./src/**/*.@(${config.purgecss.cssUserFileExtensions.join("|")})`,
+        `./templates/**/*.@(${config.purgecss.cssUserFileExtensions.join("|")})`,
+        `./web/**/*.@(${config.purgecss.cssUserFileExtensions.join("|")})`,
+      ],
       css: [`./src/**/*.@(${config.purgecss.cssFileExtensions.join("|")})`],
       extractors: [
         {
@@ -95,7 +117,7 @@ postCssPlugins.push(autoprefixer());
 module.exports = {
   runtimeCompiler: false,
   outputDir: "web/dist",
-  filenameHashing: process.env.NODE_ENV === "production",
+  filenameHashing: isProduction,
 
   css: {
     sourceMap: true,
@@ -141,10 +163,7 @@ module.exports = {
     conf.plugins.delete("prefetch");
   },
 
-  publicPath:
-    process.env.NODE_ENV === "production"
-      ? "/"
-      : `${config.https ? "https" : "http"}://${config.host}:${config.port}/`,
+  publicPath: isProduction ? "/" : `${config.https ? "https" : "http"}://${config.host}:${config.port}/`,
 
   productionSourceMap: true,
 
@@ -153,6 +172,13 @@ module.exports = {
     stylelint: {
       fix: true, // boolean (default: true)
       files: ["src/**/*.{vue,htm,html,css,sss,less,scss,postcss}"],
+    },
+    svgSprite: {
+      loaderOptions: {
+        extract: true,
+        symbolId: (filePath) => `icon-${path.basename(filePath).replace(".svg", "")}`,
+        spriteFilename: isProduction ?  "img/icons.[hash:8].svg" : "img/icons.svg",
+      },
     },
   },
 };
