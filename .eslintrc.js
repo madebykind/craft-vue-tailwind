@@ -1,3 +1,5 @@
+const isProduction = process.env.NODE_ENV === "production";
+
 module.exports = {
   root: true,
   env: {
@@ -6,11 +8,11 @@ module.exports = {
   extends: ["@vue/airbnb", "plugin:vue/recommended", "plugin:prettier/recommended", "prettier/vue"],
   plugins: ["vue", "prettier"],
   rules: {
-    "prettier/prettier": "error",
-    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
-    "import/extensions": "never",
-    "import/prefer-default-export": "never",
+    "prettier/prettier": 2,
+    "no-console": isProduction ? 2 : 0,
+    "no-debugger": isProduction ? 2 : 0,
+    "import/extensions": 0,
+    "import/prefer-default-export": 0,
   },
   parserOptions: {
     parser: "babel-eslint",

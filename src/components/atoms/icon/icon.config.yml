@@ -1,0 +1,11 @@
+title: "Icon"
+status: "ready"
+
+context:
+  icon: logo
+
+variants:
+  -
+    name: Arrow Right
+    context:
+      icon: arrow-right

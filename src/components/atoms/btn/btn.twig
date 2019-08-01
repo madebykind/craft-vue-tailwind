@@ -1,0 +1,23 @@
+{#
+ # Btn atom
+ #
+ # @param {string} text The text of the button
+ #}
+{%- set el = el | default('a') -%}
+{%- set class = class | default('') -%}
+{%- set iconClass = iconClass | default('') -%}
+{%- set textClass = textClass | default('') -%}
+{%- set attrs = attrs | default({}) -%}
+{%- if href | default(false) -%}
+  {%- set attrs = attrs | merge({ href: href }) -%}
+{%- endif -%}
+
+<{{ el }} {{ attr(attrs) }} class="group {{ class }}">
+  <span class="inline align-middle text-black inline-block transition {{ textClass }}">
+    {{- text -}}
+  </span>{%- include '@icon' with {
+      icon: 'arrow-right',
+      class: 'transition w-5 h-5 text-black inline-block ml-1 align-middle group-hover:ml-2 ' ~ iconClass
+    }
+  %}
+</{{ el }}>

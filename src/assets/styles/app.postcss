@@ -2,10 +2,8 @@
  * This injects Tailwind's base styles, which is a combination of
  * Normalize.css and some additional base styles.
  *
- * You can see the styles here:
- * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
  */
-@import "tailwindcss/preflight.css";
+@import "tailwindcss/base.css";
 
 /**
  * This injects any component classes registered by plugins.
@@ -13,10 +11,7 @@
 @import "tailwindcss/components.css";
 
 /**
- * Here you would add any of your custom component classes; stuff that you'd
- * want loaded *before* the utilities so that the utilities could still
- * override them.
- *
+ * Custom component classes
  * Example:
  * @import 'components/buttons';
  */
@@ -28,12 +23,13 @@
 @import "tailwindcss/utilities.css";
 
 /**
- * Here you would add any custom utilities you need that don't come out of the
- * box with Tailwind.
+ * Custom utilities.
  *
  * Example:
  * @import 'utilities/background-patterns';
  */
+@import "@/assets/styles/utilities/_screen-reader-only.postcss";
+
 
 body {
   @apply

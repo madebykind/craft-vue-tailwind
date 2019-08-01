@@ -23,6 +23,11 @@
       CONFIG: {},
     };
     (function(){
+      var docEl = document.documentElement;
+      docEl.classList.remove('no-js');
+      docEl.classList.add('js', 'js-loading');
+    }());
+    (function(){
       var ajax = new XMLHttpRequest();
       ajax.open("GET", "{{ spritePath }}", true);
       ajax.send();

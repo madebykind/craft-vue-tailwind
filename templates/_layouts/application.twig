@@ -1,22 +1,52 @@
-{%- header 'X-Frame-Options: SAMEORIGIN' -%}
-{%- header 'X-XSS-Protection: 1; mode=block' -%}
-{%- header 'X-Content-Type-Options: nosniff' -%}
-{%- header 'Referrer-Policy: same-origin' -%}
 <!DOCTYPE html>
-<html lang="en" class="no-js sr">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {#
-    @todo add CDN hostname
-    <link rel="dns-prefetch" href="">
-  #}
+
+  <link rel="dns-prefetch" href="{{ getenv('CRAFT_ASSET_BASE_URL') }}">
+  <link rel="dns-prefetch" href="https://{{ getenv('IMGIX_HOSTNAME') }}">
+
   <link rel="home" href="{{ siteUrl }}" />
   <title>{{ siteName }}</title>
 
   {% if getenv('ENVIRONMENT') != 'development' %}
     <link rel="stylesheet" href="{{ rev('app.css') }}">
   {% endif %}
+
+  {% set spritePath = getenv('ASSET_MODE') == 'development'
+                      ? 'http://localhost:' ~ getenv('ASSET_SERVER_PORT') ~ '/img/icons.svg'
+                      : rev('img/icons.svg') %}
+  <script>
+    {# Module queue #}
+    window.APP = {
+      modules: {},
+      addModule: function(name, config) {
+        this.modules[name] = this.modules[name] || [];
+        this.modules[name].push(config);
+      },
+      DEBUG: {{ craft.app.config.general.devMode ? 1 : 0 }},
+      CONFIG: {},
+    };
+    (function(){
+      var docEl = document.documentElement;
+      docEl.classList.remove('no-js');
+      docEl.classList.add('js', 'js-loading');
+    }());
+
+    {# Ajax in SVG sprite #}
+    (function(){
+      var ajax = new XMLHttpRequest();
+      ajax.open("GET", "{{ spritePath }}", true);
+      ajax.send();
+      ajax.onload = function(e) {
+        var div = document.createElement("div");
+        div.hidden = true;
+        div.innerHTML = ajax.responseText;
+        document.body.insertBefore(div, document.body.childNodes[0]);
+      }
+    }());
+  </script>
 </head>
 
 <body class="{{ craft.app.config.general.devMode ? 'debug'}}">
@@ -25,19 +55,27 @@
       {% include '_includes/chrome/masthead' %}
     {% endblock %}
     <main id="app">
-      {% block main %}
-
-      {% endblock %}
+      {% block main %}{% endblock %}
     </main>
     {% block footer %}
       {% include '_includes/chrome/footer' %}
     {% endblock %}
-    {% if getenv('ENVIRONMENT') == 'development' %}
-      <script src="http://localhost:{{ getenv('ASSET_SERVER_PORT') }}/app.js"></script>
-    {% else %}
-      <script src="{{ rev('chunk-vendors.js') }}"></script>
-      <script src="{{ rev('app.js') }}"></script>
-    {% endif %}
   {% endblock %}
+  {% if getenv('ENVIRONMENT') == 'development' %}
+    <script src="http://localhost:{{ getenv('ASSET_SERVER_PORT') }}/app.js"></script>
+  {% else %}
+    <script src="{{ rev('chunk-vendors.js') }}"></script>
+    <script src="{{ rev('app.js') }}"></script>
+  {% endif %}
+  {% if getenv('ENVIRONMENT') == 'production' and getenv('GOOGLE_ANALYTICS_UA') %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ getenv('GOOGLE_ANALYTICS_UA') }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', {{ getenv('GOOGLE_ANALYTICS_UA') }});
+    </script>
+  {% endif %}
 </body>
 </html>
