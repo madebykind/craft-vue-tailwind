@@ -26,8 +26,8 @@
    }
   ],
   "require": {
-    "craftcms/cms": "^3.1.0",
-    "am-impact/amcommand": "^3.1",
+    "craftcms/cms": "^3.2.8",
+    "am-impact/amcommand": "^3.1.4",
     "vlucas/phpdotenv": "^2.4.0",
     "clubstudioltd/craft-asset-rev": "^v6.0.1",
     "ournameismud/fractal": "dev-master"
