@@ -1,0 +1,15 @@
+{#
+  Icon atom
+  @param icon {string}  required
+  @param width {int} optional
+  @param height {int} optional
+  @param class {string} optional
+ #}
+
+{% set width = width | default(32) %}
+{% set height = height | default(32) %}
+{% set class = class | default('w-8 h-8') %}
+
+<svg class="{{ class }}" viewBox="0 0 {{ width }} {{ height }}">
+  <use xlink:href="#icon-{{ icon }}" />
+</svg>

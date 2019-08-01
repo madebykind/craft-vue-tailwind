@@ -1,4 +1,4 @@
-const path = require("path");
+const path = require("path"); // eslint-disable-line import/no-extraneous-dependencies
 const ManifestPlugin = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const whitelister = require("purgecss-whitelister");
@@ -6,12 +6,16 @@ const sane = require("sane");
 const autoprefixer = require("autoprefixer");
 const postcssPresetEnv = require("postcss-preset-env");
 const tailwindcss = require("tailwindcss");
+
 const postcssPurgecss = require("@fullhuman/postcss-purgecss");
 const postcssNested = require("postcss-nested");
 const postcssImport = require("postcss-import");
 const postcssResolver = require("postcss-import-resolver");
-const postcssAssets = require("postcss-assets");
 const postcssReporter = require("postcss-reporter");
+const postcssAssets = require("postcss-assets");
+const CopyPlugin = require("copy-webpack-plugin");
+
+const tailwindConfig = require("./tailwind.config.js");
 
 require("colors");
 
@@ -45,9 +49,11 @@ const config = {
       /^(?!(|.*?:)cursor-move).+-move$/,
       /^router-link(|-exact)-active$/,
       /--/,
+      // /(sm|md|lg|xl)\:flex-\d/,
+      // /(sm|md|lg|xl)\:text-(center|right|left)/
     ],
     cssFileExtensions: ["css", "less", "pcss", "postcss", "sass", "scss", "styl"],
-    cssUserFileExtensions: ["html", "twig", "vue", ""],
+    cssUserFileExtensions: ["html", "twig", "vue"],
   },
 };
 
@@ -147,8 +153,24 @@ module.exports = {
 
   configureWebpack: {
     plugins: [
+      new CopyPlugin([
+        {
+          context: "src/assets/images",
+          from: "**/*{.gif,.jpg,.jpeg,.png,.svg, .webp}",
+          to: isProduction ? "img/[path][name].[contenthash:8].[ext]" : "img/[path][name].[ext]",
+          toType: "template",
+        },
+      ]),
       new ManifestPlugin({
         publicPath: "/dist/",
+        map: (file) => {
+          if (isProduction) {
+            // Remove hash in manifest key
+            /* eslint-disable no-param-reassign */
+            file.name = file.name.replace(/(\.[a-f0-9]{8})(\..*)$/, "$2");
+          }
+          return file;
+        },
       }),
       new MiniCssExtractPlugin({
         filename: "css/[name].[contenthash].css",
@@ -177,7 +199,7 @@ module.exports = {
       loaderOptions: {
         extract: true,
         symbolId: (filePath) => `icon-${path.basename(filePath).replace(".svg", "")}`,
-        spriteFilename: isProduction ?  "img/icons.[hash:8].svg" : "img/icons.svg",
+        spriteFilename: isProduction ? "img/icons.[hash:8].svg" : "img/icons.svg",
       },
     },
   },

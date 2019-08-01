@@ -1,22 +1,26 @@
+// Vendor
+// import Vue from "vue";
 import svg4everybody from "svg4everybody";
-import Vue from "vue";
 
+// Assets
 import "./assets/styles/app.postcss";
 import "@/lib/svg-sprite";
-import init from "@/lib/init";
 
-Vue.config.productionTip = false;
+// Boostrap
+import setLoaded from "@/lib/setLoaded";
+import initModules from "@/lib/initModules";
+import modulesEnabled from "@/modulesEnabled";
 
-// window.APP = new Vue({
-//   el: '#app',
-//   render(h) {
-//     return h(App);
-//   },
-// });
+// Vue apps
 
+const { APP } = window;
+APP.DEBUG = typeof APP.DEBUG !== "undefined" ? APP.DEBUG : !process.env.NODE_ENV === "production";
 
-window.addEventListener("DOMContentLoaded",
-  () => init(window.GROW, {})
-    .then(() => svg4everybody())
+// Vue.config.productionTip = false;
 
-);
+window.addEventListener("DOMContentLoaded", () => {
+  svg4everybody();
+
+  setLoaded(APP);
+  APP.modules = initModules(APP.modules, modulesEnabled, APP.DEBUG);
+});

@@ -1,0 +1,16 @@
+title: Buttons
+status: ready
+
+context:
+  text: Default button
+  href: '#'
+  class: ''
+
+variants:
+  -
+    name: button
+    context:
+      el: button
+      class: 'text-yellow'
+      href: false
+      text: 'Button tag button'
