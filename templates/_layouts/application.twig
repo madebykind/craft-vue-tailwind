@@ -10,7 +10,7 @@
   <link rel="home" href="{{ siteUrl }}" />
   <title>{{ siteName }}</title>
 
-  {% if getenv('ENVIRONMENT') != 'development' %}
+  {% if getenv('ASSET_MODE') != 'development' %}
     <link rel="stylesheet" href="{{ rev('app.css') }}">
   {% endif %}
 
@@ -61,7 +61,7 @@
       {% include '_includes/chrome/footer' %}
     {% endblock %}
   {% endblock %}
-  {% if getenv('ENVIRONMENT') == 'development' %}
+  {% if getenv('ASSET_MODE') == 'development' %}
     <script src="http://localhost:{{ getenv('ASSET_SERVER_PORT') }}/app.js"></script>
   {% else %}
     <script src="{{ rev('chunk-vendors.js') }}"></script>

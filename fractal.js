@@ -1,7 +1,7 @@
 require("dotenv").config();
 require("colors");
 
-const path = require("path");
+const path = require("path"); // eslint-disable-line import/no-extraneous-dependencies
 const fs = require("fs");
 const ip = require("ip");
 

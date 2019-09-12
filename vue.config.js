@@ -84,7 +84,7 @@ const postCssPlugins = [
     }),
   }),
   postcssPresetEnv({ stage: 2 }),
-  tailwindcss("./tailwind.config.js"),
+  tailwindcss(tailwindConfig),
   postcssNested({ unwrap: ["screen"] }),
   postcssAssets({
     loadPaths: ["src/assets/images/", "src/assets/fonts/"],
@@ -185,7 +185,9 @@ module.exports = {
     conf.plugins.delete("prefetch");
   },
 
-  publicPath: isProduction ? "/" : `${config.https ? "https" : "http"}://${config.host}:${config.port}/`,
+  publicPath: isProduction
+    ? "/"
+    : `${config.https ? "https" : "http"}://${config.host}:${config.port}/`,
 
   productionSourceMap: true,
 
