@@ -1,5 +1,9 @@
+{%- set spritePath = 'http://' ~ assetHostname ~ ':' ~ assetPort ~ '/img/icons.svg' %}
+{%- if isBuild -%}
+  {%- set spritePath = 'img/icons.svg' -%}
+{%- endif -%}
 <!DOCTYPE html>
-<html lang="en" class="no-js sr">
+<html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +50,8 @@
     <script src="{{ 'chunk-vendors.js' | rev | path }}"></script>
     <script src="{{ 'app.js' | rev | path }}"></script>
   {% else %}
-    <script src="http://{{ assetHostname() }}:{{ assetPort() }}/app.js"></script>
+    <script src="http://{{ assetHostname() }}:{{ assetPort() }}/js/chunk-vendors.js"></script>
+    <script src="http://{{ assetHostname() }}:{{ assetPort() }}/js/app.js"></script>
   {% endif %}
   </body>
 </html>
