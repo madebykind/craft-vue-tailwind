@@ -4,6 +4,7 @@ require("colors");
 const path = require("path"); // eslint-disable-line import/no-extraneous-dependencies
 const fs = require("fs");
 const ip = require("ip");
+const Case = require("case");
 
 /* Create a new Fractal instance and export it for use elsewhere if required */
 const fractal = require("@frctl/fractal").create();
@@ -67,6 +68,9 @@ fractal.web.set("server.syncOptions", {
 // Set default preview layout
 fractal.components.set("default.preview", "@preview");
 
+const toAttrName = (str) => Case.kebab(str);
+const toAttrValue = (val) => Array.isArray(val) ? val.join(" "): val;
+
 // Use twig
 fractal.components.engine(
   twigAdapter({
@@ -77,6 +81,11 @@ fractal.components.engine(
       assetPort: () => process.env.ASSET_SERVER_PORT,
       assetHostname: () => ip.address(),
       isBuild: () => process.argv.includes("build"),
+      attr: (attrs) => Object.entries(attrs)
+                              .filter(([key]) => key[0] !== "_")
+                              .map(([key, value]) => {
+                                return `${toAttrName(key)}="${toAttrValue(value)}"`
+                              }).join(" "),
     },
   })
 );
