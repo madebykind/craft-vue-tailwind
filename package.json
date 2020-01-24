@@ -1,9 +1,9 @@
 {
   "name": "craft-vue-tailwind",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "private": true,
-  "engines" : {
-    "node" : ">=10.16.0"
+  "engines": {
+    "node": ">=10.16.0"
   },
   "scripts": {
     "serve": "concurrently \"vue-cli-service serve\" \"fractal start\"",
