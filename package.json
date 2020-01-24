@@ -103,12 +103,10 @@
   },
   "lint-staged": {
     "*.{js,vue}": [
-      "yarn lint:js",
-      "git add"
+      "yarn lint:js"
     ],
     "*.postcss": [
-      "yarn lint:styles",
-      "git add"
+      "yarn lint:styles"
     ]
   },
   "title": "Craft Vue Tailwind"
