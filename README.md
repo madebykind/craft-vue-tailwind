@@ -73,6 +73,8 @@ nanobox run
 # once you're inside the nanobox container
 yarn project:setup-craft
 
+# build fractal -> twig pathmap
+yarn build:components
 ```
 
 ## Getting an existing project running
