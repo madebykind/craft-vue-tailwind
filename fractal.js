@@ -57,7 +57,6 @@ fractal.web.set("server.sync", true);
 fractal.web.set("server.port", pkg.kindConfig.ports.fractal);
 fractal.web.set("server.syncOptions", {
   open: true,
-  browser: ["google chrome"],
   notify: true,
 });
 
