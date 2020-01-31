@@ -34,3 +34,5 @@ yarn-error.log*
 components-map.json
 *.sublime-project
 *.sublime-workspace
+
+storage/config-backups/
