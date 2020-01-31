@@ -9,10 +9,11 @@ module.exports = {
   plugins: ["vue", "prettier"],
   rules: {
     "prettier/prettier": 1,
-    "no-console": isProduction ? 2 : 0,
+    "no-console": isProduction ? 1 : 0,
     "no-debugger": isProduction ? 2 : 0,
     "import/extensions": 0,
     "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": [2, { devDependencies: true }],
   },
   parserOptions: {
     parser: "babel-eslint",
