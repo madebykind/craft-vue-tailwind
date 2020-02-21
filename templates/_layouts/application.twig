@@ -62,7 +62,8 @@
     {% endblock %}
   {% endblock %}
   {% if getenv('ASSET_MODE') == 'development' %}
-    <script src="http://localhost:{{ getenv('ASSET_SERVER_PORT') }}/app.js"></script>
+    <script src="http://localhost:{{ getenv('ASSET_SERVER_PORT') }}/js/chunk-vendors.js"></script>
+    <script src="http://localhost:{{ getenv('ASSET_SERVER_PORT') }}/js/app.js"></script>
   {% else %}
     <script src="{{ rev('chunk-vendors.js') }}"></script>
     <script src="{{ rev('app.js') }}"></script>
