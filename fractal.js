@@ -70,6 +70,7 @@ fractal.components.set("default.preview", "@preview");
 const toAttrName = (str) => Case.kebab(str);
 const toAttrValue = (val) => Array.isArray(val) ? val.join(" "): val;
 
+
 // Use twig
 fractal.components.engine(
   twigAdapter({
@@ -80,11 +81,17 @@ fractal.components.engine(
       assetPort: () => process.env.ASSET_SERVER_PORT,
       assetHostname: () => ip.address(),
       isBuild: () => process.argv.includes("build"),
-      attr: (attrs) => Object.entries(attrs)
-                              .filter(([key]) => key[0] !== "_")
-                              .map(([key, value]) => {
-                                return `${toAttrName(key)}="${toAttrValue(value)}"`
-                              }).join(" "),
+      attr: (attrs) =>
+        Object.entries(attrs)
+          .filter(([key]) => key[0] !== "_")
+          .map(([key, value]) => {
+            const valOutput = toAttrValue(value);
+            if (valOutput) {
+              return `${toAttrName(key)}="${valOutput}"`;
+            }
+            return null;
+          })
+          .join(" "),
     },
   })
 );
