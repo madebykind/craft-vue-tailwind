@@ -60,17 +60,13 @@ const config = {
 // Custom PurgeCSS extractor for Tailwind that allows special characters in
 // class names.
 // https://github.com/FullHuman/purgecss#extractor
-class TailwindExtractor {
-  static extract(content) {
-    return content.match(/[A-z0-9-:/]+/g) || [];
-  }
+function tailwindExtractor(content) {
+  return content.match(/[\w-/:]+(?<!:)/g) || [];
 }
 
-class TailwindVueExtractor {
-  static extract(content) {
-    const contentWithoutStyleBlocks = content.replace(/<style[^]+?<\/style>/gi, "");
-    return contentWithoutStyleBlocks.match(/[A-Za-z0-9-_:/]+/g) || [];
-  }
+function tailwindVueExtractor(content) {
+  const contentWithoutStyleBlocks = content.replace(/<style[^]+?<\/style>/gi, "");
+  return contentWithoutStyleBlocks.match(/[A-Za-z0-9-_:/]+/g) || [];
 }
 
 const postCssPlugins = [
@@ -104,11 +100,11 @@ if (!isHotReloaded) {
       css: [`./src/**/*.@(${config.purgecss.cssFileExtensions.join("|")})`],
       extractors: [
         {
-          extractor: TailwindExtractor,
+          extractor: tailwindExtractor,
           extensions: ["html", "twig", "js"],
         },
         {
-          extractor: TailwindVueExtractor,
+          extractor: tailwindVueExtractor,
           extensions: ["vue"],
         },
       ],
