@@ -65,6 +65,8 @@ return [
         // Enable CSRF Protection (recommended)
         'enableCsrfProtection' => true,
         'csrfTokenName' => 'APP_CSRF_TOKEN',
+        // Some hosting environments may use the sendPoweredByHeader to route requests accordingly
+        // Check before disabling, to not negate performance in production
         'sendPoweredByHeader' => false,
         'phpSessionName' => 'SessionId',
 
