@@ -47,7 +47,6 @@ return [
         'devMode' => filter_var(getenv('CRAFT_DEBUG'), FILTER_VALIDATE_BOOLEAN),
 
         'testToEmailAddress' => getenv('CRAFT_CATCH_ALL_EMAIL_ADDRESS') ?: null,
-        'environment' => getenv('ENVIRONMENT'),
         /**
          * Caching
          */
