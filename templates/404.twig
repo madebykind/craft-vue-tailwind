@@ -1,0 +1,15 @@
+{#
+ # 404 error page template
+ #
+#}
+
+{# Parent template #}
+{% extends '_layouts/message' %}
+
+{# Entry Variables #}
+{% set title = "Sorry, the page you requested was not found (404)" %}
+
+{# Output #}
+{% set message %}
+  <p>We'll this is embarassing. We can't find the page you asked for, please check that the URL is correct. If all else fails, please do drop us a line.</p>
+{% endset %}

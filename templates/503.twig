@@ -1,0 +1,15 @@
+{#
+ # 500 error page template
+ #
+#}
+
+{# Parent template #}
+{% extends '_layouts/message' %}
+
+{# Entry Variables #}
+{% set title = "Sorry, our site is temporarily unavailable (503)" %}
+
+{# Output #}
+{% set message %}
+  <p>Ooops! Please excuse us while we slip into something more confortable. Try reloading the page in a few seconds time. If all else fails, do drop us a line.</p>
+{% endset %}

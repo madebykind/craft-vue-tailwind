@@ -1,0 +1,15 @@
+{#
+ # 500 error page template
+ #
+#}
+
+{# Parent template #}
+{% extends '_layouts/message' %}
+
+{# Entry Variables #}
+{% set title = "Forbidden (403)" %}
+
+{# Output #}
+{% set message %}
+  <p>Hmmm, looks like you tried to do something you don't have permission to do. If all else fails, do drop us a line.</p>
+{% endset %}
