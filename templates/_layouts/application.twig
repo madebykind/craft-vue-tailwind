@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="min-h-full no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,7 +49,7 @@
   </script>
 </head>
 
-<body class="{{ craft.app.config.general.devMode ? 'debug'}}">
+<body class="min-h-screen flex flex-col {{ craft.app.config.general.devMode ? 'debug'}}">
   {% block fullPage %}
     {% block masthead %}
       {% include '_includes/chrome/masthead' %}
