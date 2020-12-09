@@ -1,0 +1,15 @@
+{#
+ # 500 error page template
+ #
+#}
+
+{# Parent template #}
+{% extends '_layouts/message' %}
+
+{# Entry Variables #}
+{% set title = "Sorry, something went wrong (500)" %}
+
+{# Output #}
+{% set message %}
+  <p>Oh my! Something unexpected has happened. Don't worry, we've been automatically notified and will take a look. Please check back soon. If all else fails, do drop us a line.</p>
+{% endset %}
