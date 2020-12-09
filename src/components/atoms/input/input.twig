@@ -1,0 +1,38 @@
+{#
+ # Input atom
+ #
+ # @param {string} type
+ # @param {enum} state ['error','success']
+ # @param {string|array} class
+ # @param {string} id
+ # @param {string} name
+ # @param {string} placeholder
+ # @param {string} value
+ # @param {string} placeholder
+ # @param {boolean} readonly
+ # @param {boolean} disabled
+ # @param {boolean} required
+ #}
+
+{# @todo inputs have no borders #}
+
+{% set state = state | default('') %}
+{% set class = class | default([]) | merge (['input'])  %}
+{% if state == 'error' %}
+  {% set class = class | merge(['border-status-red']) %}
+{% elseif state == 'success' %}
+  {% set class = class | merge(['border-status-green']) %}
+{% endif %}
+
+<input {{ attr({
+    type: type | default('text'),
+    class: class,
+    id: id | default(),
+    name: name | default(),
+    placeholder: placeholder | default(),
+    value: value | default(),
+    placeholder: placeholder | default(),
+    readonly: readonly | default(),
+    disabled: disabled | default(),
+    required: required | default(),
+   }) }} >

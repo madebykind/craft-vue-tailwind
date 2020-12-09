@@ -1,0 +1,20 @@
+title: "Text area"
+status: prototype
+
+context:
+  message:
+  rows: 5
+  name: textarea
+  placeholder: Enter your message here…
+
+variants:
+  -
+    name: has-error
+    context:
+      state: error
+      message: This field cannot be blank. Please enter a question.
+  -
+    name: has-success
+    context:
+      content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus suscipit lorem mollis ante dapibus, eu mollis ipsum porta. In in diam at augue faucibus bibendum vitae in risus. Aliquam vehicula luctus augue vitae consectetur. Aenean eu laoreet magna, blandit congue velit. Pellentesque maximus, mi sit amet ultricies tempor, arcu leo feugiat sem, a dictum purus ligula vitae nunc. Mauris vel purus dapibus, consectetur nibh ut, egestas sapien.
+      state: success

@@ -1,0 +1,14 @@
+status: ready
+title: "Label"
+context:
+  label: Label text
+
+variants:
+  -
+    name: has-error
+    context:
+      state: error
+  -
+    name: has-success
+    context:
+      state: success

@@ -1,0 +1,31 @@
+
+<fieldset>
+  <legend>A group of radios can be labelled using legend</legend>
+  <label class="radio{% if modifier | default(false) %} radio--{{ modifier }}{% endif %}">
+    <input type="radio"
+      {% if name %} name="{{ name }}"{% endif %}>
+    <span class="radio__indicator"></span>
+    <div class="radio__label">{{ label }} One</div>
+  </label>
+
+  <label class="radio{% if modifier | default(false) %} radio--{{ modifier }}{% endif %}">
+    <input type="radio"
+      {% if name %} name="{{ name }}"{% endif %} checked>
+    <span class="radio__indicator"></span>
+    <div class="radio__label">{{ label }} Two</div>
+  </label>
+
+  <label class="radio{% if modifier | default(false) %} radio--{{ modifier }}{% endif %}">
+    <input type="radio"
+      {% if name %} name="{{ name }}"{% endif %}>
+    <span class="radio__indicator"></span>
+    <div class="radio__label">{{ label }} Three</div>
+  </label>
+
+  <label class="radio{% if modifier | default(false) %} radio--{{ modifier }}{% endif %}">
+    <input type="radio"
+      {% if name %} name="{{ name }}"{% endif %}>
+    <span class="radio__indicator"></span>
+    <div class="radio__label">{{ label }} Four</div>
+  </label>
+</fieldset>

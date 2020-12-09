@@ -1,0 +1,21 @@
+title: "Radio"
+status: prototype
+
+context:
+  name: radio
+  label: A Radio Example
+  id: 1
+
+variants:
+  -
+    name: checked
+    context:
+      checked: true
+      label: A Checked Radio
+      id: 2
+  -
+    name: disabled
+    context:
+      label: A Disabled Radio
+      id: 3
+      disabled: true

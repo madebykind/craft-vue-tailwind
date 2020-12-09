@@ -1,0 +1,24 @@
+title: Links
+status: ready
+context:
+  href: "#"
+  text: Continue reading;
+
+variants:
+  - name: External link
+    context:
+      class: ""
+      href: "#"
+      external: true
+      text: Click here to go somewhere else…
+  - name: CTA link
+    context:
+      class: "a--cta hover:text-teal focus:text-teal font-display inline-flex items-center"
+      arrow: true
+      href: "#"
+      text: Go there now!
+  - name: Snazzy link
+    context:
+      class: "a--snazzy"
+      href: "#"
+      text: extremely long links should wrap as required and still be styled correctly on hove / active;

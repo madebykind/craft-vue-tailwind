@@ -1,0 +1,35 @@
+/* ==========================================================================
+    HEADINGS
+   ========================================================================== */
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  & > a {
+    @apply font-normal;
+
+    color: inherit;
+  }
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+  /* Turn on kerning, common ligatures, contextual alternates,
+  titling caps and swashes for larger headings. Because sexy type. */
+  font-feature-settings: "calt", "clig", "kern", "liga", "swsh", "titl";
+}

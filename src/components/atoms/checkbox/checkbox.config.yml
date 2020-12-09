@@ -1,0 +1,23 @@
+title: "Checkbox"
+status: prototype
+context:
+  label: Checkbox
+
+variants:
+  -
+    name: checked
+    context:
+      checked: true
+      fieldname: checkbox-checked
+      label: Checked checkbox
+  -
+    name: disabled
+    context:
+      label: Disabled checkbox
+      disabled: true
+  -
+    name: disabled-checked
+    context:
+      label: Checked and disabled checkbox
+      disabled: true
+      checked: true

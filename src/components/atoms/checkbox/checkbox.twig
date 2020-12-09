@@ -1,0 +1,10 @@
+
+<label class="checkbox">
+  <input type="checkbox"
+    {% if name %} name="{{ name }}"{% endif %}
+    {% if checked %} checked{% endif %}
+    {% if disabled %} disabled{% endif %}
+    {% if required %} required{% endif %}
+  >
+  <div class="checkbox__label">{{ label }}</div>
+</label>

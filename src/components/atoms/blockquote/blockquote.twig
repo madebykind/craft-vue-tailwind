@@ -1,0 +1,31 @@
+{#
+ # Blockquote Molecule
+ #
+ # @param name {string} Optional name of the quote author.
+ # @param quote {string} Required quote content.
+ # @param role {string} Optional authors job title.
+ #}
+
+{# Params #}
+{% set name = name | default(null) %}
+{% set quote = quote | default() %}
+{% set role = role | default(null) %}
+
+{# Internal vars #}
+{% set el = (name | default(false)) ? 'figure' : 'div' %}
+
+{# Output #}
+<{{el}} class="my-double">
+
+  {% if name %}
+    <figcaption class="mt-4">
+      <span class="font-bold">{{ name }}</span>{% if role %},&nbsp;{{ role }}{% endif %}
+    </figcaption>
+  {% endif %}
+
+  <blockquote>
+    <p class="text-lg md:text-xl lg:text-2xl">
+      &ldquo;{{ quote }}&rdquo;
+    </p>
+  </blockquote>
+</{{el}}>

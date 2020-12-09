@@ -1,0 +1,31 @@
+{#
+ # Link atom
+ #
+ # @param arrow {boolean} - Optional include an arrow icon in the link.
+ # @param class {string} - Optional link classes'.
+ # @param external {boolean} - Optional mark the link as external and secure it.
+ # @param href {string} - Required. The Url for the link.
+ # @param target {string} - Optional. Link target attribute.
+ # @param text {string} - Required anchor text, ideally not ‘Click here’ or 'Read more'.
+ #}
+
+{# Params #}
+{% set arrow = arrow | default(false) %}
+{% set class = class | default('') %}
+{% set external = external | default(false) %}
+{% set href = href %}
+{% set target = target | default(null) %}
+{% set text = text %}
+
+{# Output #}
+<a href="{{ href }}" {% if class %} class="{{ class }}" {% endif %} {% if target %} target="{{ target }}" {% endif %} {% if external %} rel="noopener" {% endif %}>
+  {{- text -}}
+  {%- if arrow -%}
+  {% spaceless %}
+    {%- include '@icon' with {
+      blockClass: 'a--cta__arrow flex-none inline-block ml-4 text-currentColor w-4',
+      icon: 'arrow-cta',
+    } only -%}
+  {% endspaceless %}
+  {%- endif -%}
+</a>

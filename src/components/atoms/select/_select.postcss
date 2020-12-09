@@ -1,0 +1,59 @@
+/* ==========================================================================
+    SELECTS
+   ========================================================================== */
+
+.select {
+  @apply
+    bg-white
+    border
+    flex
+    items-center
+    min-h-input
+    relative
+  ;
+
+  @screen md {
+    @apply min-w-input;
+  }
+
+  &:hover {
+    @apply border-blue;
+  }
+
+  select {
+    @apply
+      absolute
+      appearance-none
+      bg-transparent
+      border-transparent
+      bottom-0
+      p-2
+      top-0
+      w-full
+    ;
+
+    /* hide ie drop-down arrow */
+    &::-ms-expand {
+      @apply hidden;
+    }
+
+    /* undo the firefox inner focus ring */
+    &:focus:-moz-focusring {
+      @apply text-transparent;
+
+      text-shadow: 0 0 0 #525252;
+    }
+  }
+
+  .select__icon {
+    @apply
+      absolute
+      pointer-events-none
+      rotate-180
+      transform
+      w-4
+    ;
+
+    right: 1em;
+  }
+}

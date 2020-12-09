@@ -1,0 +1,71 @@
+title: "Text type inputs"
+status: ready
+context:
+  type: text
+
+variants:
+  -
+    name: email address
+    context:
+      placeholder: Your email address…
+      type: email
+  -
+    name: telephone number
+    context:
+      type: tel
+  -
+    name: password
+    context:
+      type: password
+  -
+    name: number
+    context:
+      type: number
+  -
+    name: search
+    context:
+      type: search
+  -
+    name: date
+    context:
+      type: date
+  -
+    name: datetime
+    context:
+      type: datetime
+  -
+    name: datetime local
+    context:
+      type: datetime-local
+  -
+    name: month
+    context:
+      type: month
+  -
+    name: week
+    context:
+      type: week
+  -
+    name: time
+    context:
+      type: time
+  -
+    name: URL
+    context:
+      type: url
+  -
+    name: has-error
+    context:
+      state: error
+  -
+    name: has-success
+    context:
+      state: success
+  -
+    name: disabled
+    context:
+      disabled: true
+  -
+    name: readonly
+    context:
+      readonly: true

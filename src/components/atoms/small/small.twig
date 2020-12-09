@@ -1,0 +1,11 @@
+{#
+ # Small atom
+ #
+ # @param text {string} - Required legal text.
+ #}
+
+{# Params #}
+{% set text = text | default('') %}
+
+{# Output #}
+<small>{{ text }}</small>

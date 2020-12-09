@@ -1,0 +1,1 @@
+<label{% if state %} class="{% if state == 'error' %}text-status-red{% elseif state == 'success' %}text-status-green{% endif %}"{% endif %}{% if for %} for="{{ for }}"{% endif %}>{{ label }}</label>

@@ -1,0 +1,16 @@
+title: "Notification Inline"
+status: ready
+context:
+  message: This is an inline notification
+
+variants:
+  -
+    name: has-error
+    context:
+      message: Something is wrong with this input
+      state: error
+  -
+    name: has-success
+    context:
+      message: You've entered the correct value for this input
+      state: success

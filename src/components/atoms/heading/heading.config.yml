@@ -1,0 +1,53 @@
+title: Headings
+status: ready
+
+context:
+  el: h1
+  text: heading ipsum dolor sit amet
+
+variants:
+  -
+    name: Level 2 heading
+    context:
+      el: h2
+  -
+    name: Linked level 2 heading
+    context:
+      el: h2
+      href: '#'
+  -
+    name: Level 3 heading
+    context:
+      el: h3
+  -
+    name: Linked level 3 heading
+    context:
+      el: h3
+      href: '#'
+  -
+    name: Level 4 heading
+    context:
+      el: h4
+  -
+    name: Linked level 4 heading
+    context:
+      el: h4
+      href: '#'
+  -
+    name: Level 5 heading
+    context:
+      el: h5
+  -
+    name: Linked level 5 heading
+    context:
+      el: h5
+      href: '#'
+  -
+    name: Level 6 heading
+    context:
+      el: h6
+  -
+    name: Linked level 6 heading
+    context:
+      el: h6
+      href: '#'

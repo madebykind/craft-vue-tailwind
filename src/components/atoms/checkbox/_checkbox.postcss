@@ -1,0 +1,65 @@
+/* ==========================================================================
+    CHECKBOXES
+   ========================================================================== */
+
+.checkbox {
+
+  @apply flex flex-wrap items-center -ml-4;
+
+  /* Hide the real checkbox */
+  & input {
+    @apply absolute opacity-0;
+  }
+
+  /* Create a faux checkbox */
+  & .checkbox__label {
+    @apply
+      inline-flex
+      items-center
+      p-4
+    ;
+
+    &::before {
+      @apply
+        border
+        bg-white
+        flex
+        items-center
+        justify-center
+        mr-4
+        h-12 w-12
+      ;
+
+      content: '';
+    }
+  }
+
+  /* Make disabled controls look like they are disabled. */
+  & input:disabled + .checkbox__label::before {
+    @apply bg-grey-light;
+  }
+
+  /* Update the faux checkbox styles on checked or focussed states */
+  & input:checked + .checkbox__label::before,
+  & input:focus + .checkbox__label::before {
+    @apply bg-blue border-black;
+  }
+
+  & input:checked + .checkbox__label::before {
+    content: '✓';
+  }
+
+  /* Apply disabled checkbox styles to the checkbox label */
+  & input:disabled + .checkbox__label {
+    @apply cursor-not-allowed text-grey;
+  }
+
+  /* Update faux checkbox styles on user action */
+  & input:not(:disabled) + .checkbox__label:hover,
+  & input:not(:disabled) + .checkbox__label:focus,
+  & input:not(:disabled) + .checkbox__label:focus:active {
+    &::before {
+      @apply border-blue;
+    }
+  }
+}

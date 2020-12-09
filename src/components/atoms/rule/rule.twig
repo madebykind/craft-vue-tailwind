@@ -1,0 +1,9 @@
+{#
+ # Horizontal rule component
+ #
+ # @param class {string} - Optional component class.
+ #}
+
+{% set blockClass = blockClass | default() %}
+
+<hr class="hr{% if blockClass %} {{ blockClass }}{% endif %}">

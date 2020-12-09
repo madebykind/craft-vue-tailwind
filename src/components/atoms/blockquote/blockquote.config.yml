@@ -1,0 +1,11 @@
+title: "Blockquote"
+status: "ready"
+context:
+  quote: "So how do we go about creating a digital product that works both for an organisation and for its users?"
+
+variants:
+  - name: Attributed
+    context:
+      name: "Leigh Dodds"
+      quote: "“I thoroughly enjoyed working with the team from Kind on the open standards for data guidebook. They quickly understood both our needs and the broader goals of the project.”"
+      role: "Director of Advisory at The ODI"

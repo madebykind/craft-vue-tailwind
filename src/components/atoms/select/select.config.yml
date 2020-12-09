@@ -1,0 +1,28 @@
+title: "Select"
+status: prototype
+context:
+  name: select
+  id: ID
+  label: Even a select needs a label
+  options:
+    -
+      title: Option one
+      id: 1
+    -
+      title: Option two
+      id: 2
+    -
+      title: Option three
+      id: 3
+    -
+      title: Option four
+      id: 4
+
+variants:
+  -
+    name: required
+    context:
+      required: required
+      fieldname: required-select
+      label: This field is validated on submission.
+      notification: We do need you to make a selection.
