@@ -49,7 +49,7 @@
   </script>
 </head>
 
-<body class="{{ craft.app.config.general.devMode ? 'debug'}}">
+<body class="{% if craft.app.config.general.devMode %} entryId-{{ entry is defined and entry ? entry.id : '' }} sectionId-{{ section is defined and section ? section.id : '' }} layout-{{ entry is defined and entry ? entry.type.handle : '' }}{% endif %}">
   {% block fullPage %}
     {% block masthead %}
       {% include '_includes/chrome/masthead' %}
