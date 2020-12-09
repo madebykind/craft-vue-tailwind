@@ -1,0 +1,51 @@
+{#
+ # Meta component
+ #
+ # @param items {array} required  array of strings or items
+ # @param item.url {string} optional - Uri of a linked meta item.
+ # @param item.text {string} optional - Text for each meta item.
+
+ # @param dateVal {string|date} optional - Date to output as last meta item
+
+ # @param opts {object} optional
+ # @param opts.contentClass {string} optional classname to apply to wrapping el
+ # @param opts.showLinks {boolean} optional force enable/disable linking items
+#}
+
+{# Params #}
+{% set items = items | default([]) %}
+{% set dateVal = dateVal | default(null) %}
+
+{# default options #}
+{%- set defaults = {
+  contentClass: '',
+  showLinks: true,
+} -%}
+
+{%- set opts = defaults | merge(opts | default({})) -%}
+
+{%- if items or dateVal -%}
+<div class="overflow-hidden relative">
+  {# Output #}
+  <ul {{ attr({
+    class: ['meta', opts.contentClass]
+  }) }}>
+  {% for item in items %}
+    <li class="meta__item">
+      {% if opts.showLinks and (item.url | default(false)) %}
+        <a href="{{ item.url }}">{{ item.title }}</a>
+      {% else %}
+        {{ item.title }}
+      {% endif %}
+    </li>
+  {% endfor %}
+  {% if dateVal %}
+    <li class="meta__item">
+      <time datetime="{{ dateVal|date('Y-m-d\\TH:i:sO') }}">
+        {{ dateVal | date("d F Y") }}
+      </time>
+    </li>
+  {% endif %}
+  </ul>
+</div>
+{% endif %}

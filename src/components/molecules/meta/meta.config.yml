@@ -1,0 +1,14 @@
+title: Meta
+status: ready
+context:
+  items:
+    -
+      title: User-centred design
+    -
+      url: '/blog'
+      title: A link
+variants:
+  -
+    name: With date
+    context:
+      dateVal: now

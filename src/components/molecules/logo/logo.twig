@@ -1,0 +1,27 @@
+
+{#
+ # Site logo
+ #
+ # @param blockClass {string} - Optional component classes.
+ # @param siteName {string} - Required site name.
+ # @param siteUrl {string} - Required base Url for the site.
+ #}
+
+{# Params #}
+{% set blockClass = blockClass | default('w-auto') %}
+{% set siteName = siteName | default('Kind') %}
+{% set siteUrl = siteUrl | default('/') %}
+
+{# Output #}
+<div class="{% if blockClass %}{{ blockClass }} {% endif %}relative" itemscope itemtype="http://schema.org/Organization">
+  <a class="absolute top-0 right-0 bottom-0 left-0" itemprop="url" href="{{ siteUrl }}" title="Return to the {{ siteName }} home page">
+    <span class="sr-only">{{ siteName }}</span>
+  </a>
+
+  {% include '@icon' with {
+    class: 'max-w-logo',
+    height: '90',
+    icon: 'logo',
+    width: '180',
+  } only %}
+</div>

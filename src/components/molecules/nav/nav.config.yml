@@ -1,0 +1,20 @@
+title: Primary Navigation
+status: ready
+context:
+  navItems:
+    -
+      url: /about
+      title: About
+      isCurrent: true
+    -
+      url: /work
+      title: Work
+      isCurrent:
+    -
+      url: /team
+      title: Team
+      isCurrent:
+    -
+      url: /blog
+      title: Blog
+      isCurrent:

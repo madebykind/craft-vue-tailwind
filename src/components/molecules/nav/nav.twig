@@ -1,0 +1,20 @@
+{#
+ # Nav atom
+ #
+ # @param navItems {array} - Required primary navigation items.
+ # @param navClass {string} - Optional classes for modifying the nav object.
+ #}
+
+{% set navItems = navItems | default([]) %}
+
+<nav {{ attr({ class: navClass | default() }) }} aria-label="Primary navigation">
+  <ul class="nav flex justify-between">
+  {%- for item in navItems -%}
+    {% set currentClass = (item.isCurrent | default(false)) ? 'is--current' : '' %}
+
+    <li class="nav-item">
+      <a class="block {{ currentClass }}" {% if item.isCurrent %} aria-current="page"{% endif %} href="{{ item.url }}">{{ item.title }}</a>
+    </li>
+  {%- endfor -%}
+  </ul>
+</nav>

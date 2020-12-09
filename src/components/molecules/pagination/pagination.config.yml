@@ -1,0 +1,7 @@
+title: Pagination
+status: ready
+context:
+  pageInfo:
+    currentPage: 3
+    prevUrl: /
+    nextUrl: /
