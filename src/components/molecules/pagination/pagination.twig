@@ -1,0 +1,52 @@
+{#
+ # Horizontal rule component
+ #
+ # @param pageInfo {object} - Craft entries, paginated.
+ #}
+
+{% set pageInfo = pageInfo | default() %}
+
+<nav class="text-center" aria-label="pagination">
+  <ul class="list-reset inline-flex flex-wrap items-end mx-auto">
+  {% if pageInfo.prevUrl %}
+    <li class="m-2 h-4 w-4">
+      <a class="block p-2 flex items-center justify-center" href="{{ pageInfo.prevUrl }}">
+        <span class="sr-only">Previous Page</span>
+        {% include '@icon' with {
+          attrs: {
+            'aria-hidden': 'true',
+          },
+          icon: 'arrow-prev',
+          blockClass: 'h-4 w-4',
+        } only %}
+      </a>
+    </li>
+
+ {% endif %}
+
+  {% for page, url in pageInfo.getPrevUrls() %}
+    <li class="m-2 h-4 w-4"><a class="block p-0" href="{{ url }}">{{ page }}</a></li>
+  {% endfor %}
+
+  <li class="m-2 h-4 w-4"><span class="block p-0 is-disabled" aria-current="page">{{ pageInfo.currentPage }}</span></li>
+
+  {% for page, url in pageInfo.getNextUrls() %}
+    <li class="m-2 h-4 w-4"><a class="block p-0" href="{{ url }}">{{ page }}</a></li>
+  {% endfor %}
+
+  {% if pageInfo.nextUrl %}
+    <li class="m-2 h-4 w-4">
+      <a class="block p-2 flex items-center justify-center" href="{{ pageInfo.nextUrl }}">
+        <span class="sr-only">Previous Page</span>
+        {% include '@icon' with {
+          attrs: {
+            'aria-hidden': 'true',
+          },
+          icon: 'arrow-next',
+          blockClass: 'h-4 w-4',
+        } only %}
+      </a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>

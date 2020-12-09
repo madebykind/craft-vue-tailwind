@@ -1,0 +1,28 @@
+/* Set / reset some base form styles at the highest level */
+input {
+  color: currentColor;
+  font: inherit;
+
+  &:disabled {
+    @apply
+      cursor-not-allowed;
+  }
+
+  &::placeholder {
+    @apply text-text-grey;
+
+    opacity: 0.75;
+  }
+}
+
+/* Make texty-type inputs look like text inputs */
+.input {
+  @apply
+    p-2
+    transition;
+
+  &:focus {
+    /* Match Webkit's default styles in Firefox */
+    outline: 2px solid rgb(0, 94, 205);
+  }
+}

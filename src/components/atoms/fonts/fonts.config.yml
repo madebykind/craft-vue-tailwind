@@ -1,0 +1,12 @@
+title: Fonts
+status: wip
+
+context:
+  text: '<p>Body copy is set in [some font], a humanist sans-serif with great readability at typical sizes.
+        At purto convenire imperdiet mei, nobis omittantur duo ei. Eu platonem electram pri. Integre aliquando te qui, pro te liber referrentur, nostro malorum denique cu duo. Cu pri copiosae referrentur, vis in dico quidam melius. Utinam putant aeterno eam ad. Cu purto unum impetus eam, assum utinam aliquam ut his.</p>'
+
+variants:
+  -
+    name: Level 1 heading
+    context:
+      text: '<h1>Headings use something bolder</h1>'

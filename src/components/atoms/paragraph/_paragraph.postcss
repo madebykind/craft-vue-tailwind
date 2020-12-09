@@ -1,0 +1,31 @@
+/* ==========================================================================
+    PARAGRAPHS
+   ========================================================================== */
+
+p {
+  @apply leading-normal;
+
+  /* Turn on kerning, common ligatures and contextual alternates. */
+  font-feature-settings: "clig", "kern", "liga";
+  orphans: 3;
+  widows: 3;
+
+  /* Sup desktop users? */
+  @screen lg {
+    @apply text-md;
+  }
+}
+
+/* An embiggening treatment applied to the lead paragraph. More lead. */
+.lede p:first-of-type {
+  @apply
+    text-md;
+
+  /* Sup desktop users? */
+  @screen lg {
+    @apply
+      leading-relaxed
+      mt-double
+      text-lg;
+  }
+}

@@ -1,0 +1,22 @@
+{#
+ # Heading atom
+ #
+ # @param text {string} - Required heading text.
+ #}
+
+{%- set el = el | default('h2') -%}
+{%- set class = class | default('') -%}
+{%- set text = text | default('') -%}
+{%- set attrs = attrs | default({}) -%}
+{%- set href = href | default() -%}
+{%- if href -%}
+  {%- set attrs = attrs | merge({ href: href }) -%}
+{%- endif -%}
+
+<{{ el }}{% if class %} class="{{ class }}"{% endif %}>
+{% if href %}
+  <a {{ attr(attrs) }} >{{ text }}</a>
+{% else %}
+  {{ text }}
+{% endif %}
+</{{ el }}>

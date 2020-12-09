@@ -1,0 +1,72 @@
+/* ==========================================================================
+    RADIOS
+   ========================================================================== */
+
+.radio {
+
+  @apply font-bold text-lg;
+
+  /* Hide the real radio */
+  & input {
+    @apply
+      absolute
+      opacity-0
+    ;
+  }
+
+  /* Create a faux radio */
+  & .radio__label {
+    @apply
+     bg-white
+      border
+      flex items-center
+      h-full w-full
+      justify-center
+      p-4
+    ;
+
+    &:hover,
+    &:focus,
+    &:active {
+
+    }
+  }
+
+  /* Update the faux radio styles on checked and focussed states */
+  & input:checked + .radio__label,
+  & input:focus + .radio__label {
+      @apply border-2;
+  }
+
+  /* Apply disabled radio styles to the faux radio */
+  & input:disabled + .radio__label {
+    &::before,
+    &::after,
+    & + .radio__label {
+      @apply cursor-not-allowed text-grey;
+    }
+  }
+}
+
+/* SPECIALE SPICY STYLES */
+.radio__lightswitch {
+
+  /* Lightswitch? */
+  .radio__label {
+    @apply px-8;
+
+    @screen lg {
+      @apply px-16;
+    }
+  }
+
+  /* Switch on */
+  & input:checked + .radio__label {
+    @apply bg-green text-white;
+  }
+
+  /* Switch off */
+  & input:not(:checked) + .radio__label {
+    @apply text-green;
+  }
+}

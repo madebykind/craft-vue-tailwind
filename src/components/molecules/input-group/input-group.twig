@@ -1,0 +1,24 @@
+<div class="input-group">
+  {% if label %}
+    {% include '@label' with {
+      for: fieldname,
+      label: label,
+      state: labelState,
+    } only %}
+  {% endif %}
+  {% include '@input' with {
+    disabled: disabled,
+    id: fieldname,
+    placeholder: placeholder,
+    readonly: readonly,
+    state: inputState,
+    type: type,
+    value: value,
+  } only %}
+  {% if notification %}
+    {% include '@notification-inline' with {
+      message: notification,
+      state: noteState,
+    } only %}
+{% endif %}
+</div>

@@ -1,0 +1,15 @@
+{#
+ # Fonts atom
+ #
+ # @param {string} text - text
+ #}
+
+{%- set class = class | default('') -%}
+
+{% if class %}
+<div {{ attr({ class: class }) }}>
+  {{ text | raw }}
+</div>
+{% else %}
+  {{ text | raw }}
+{% endif %}

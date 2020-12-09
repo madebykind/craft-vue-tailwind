@@ -1,0 +1,54 @@
+title: "Input Group"
+status: ready
+context:
+  label: For a11y reasons inputs should always have labels.
+  type: text
+
+variants:
+  -
+    name: With placeholder text
+    context:
+      fieldname: text-field
+      label: This is a label with placeholder text.
+      message: A Label Example,
+      placeholder: Placeholder text can confuse and frustrate users, it’s best avoided
+  -
+    name: With Notification
+    context:
+      fieldname: text-with-notes
+      label: This field may need explanation, see notes below.
+      notification: This is a inline notification message which can be used to display instructions or error messages
+  -
+    name: With Error Feedback
+    context:
+      inputState: error
+      fieldname: text-with-error
+      label: This field is validated on submission.
+      labelState: error
+      notification: Something is wrong with the data you entered. Please fix it.
+      noteState: error
+  -
+    name: With Success Feedback
+    context:
+      inputState: success
+      fieldname: text-with-sucess
+      label: This field is validated before submission. Snazzy.
+      notification: Good work, the form got exactly whatit needed!
+      noteState: success
+      value: You can still go back and change this content…
+  -
+    name: With Readonly Content
+    context:
+      fieldname: text-with-content
+      label: Your Name
+      notification: Sorry, you can't change this now.
+      readonly: readonly
+      value: Will Smith
+  -
+    name: With Disabled Input
+    context:
+      disabled: disabled
+      fieldname: date-disabled
+      label: Birth Date
+      notification: This form field has been disabled.
+      type: date

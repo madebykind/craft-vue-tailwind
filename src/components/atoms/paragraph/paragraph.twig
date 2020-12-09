@@ -1,0 +1,12 @@
+{#
+ # Paragraph atom
+ #
+ # @param {string} text - text
+ #}
+
+{# Output #}
+<div {{ attr({ class: class | default('') }) }}>
+  <p>
+    {{ text }}
+  </p>
+</div>

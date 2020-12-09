@@ -1,0 +1,20 @@
+<div class="input-group{% if state == 'error' %} has-errors{% endif %}">
+  <label for="{{ id }}">Your question</label>
+  <div class="input-group__control">
+    <textarea
+      class="input"
+      name="{{ name }}"
+      id="{{ id }}"
+      placeholder="{{ placeholder }}"
+      type="textarea"
+      rows="{{ rows }}">{{ content }}</textarea>
+    {% if state %}
+      <span class="input-group__indicator">
+        {% if state == 'error' %}&times;{% elseif state == 'success' %}&check;{% endif %}
+      </span>
+    {% endif %}
+  </div>
+    {% if message %}
+      {% include '@notification-inline' %}
+    {% endif %}
+</div>

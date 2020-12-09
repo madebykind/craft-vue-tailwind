@@ -1,0 +1,13 @@
+title: Paragraphs
+status: ready
+context:
+  text: 'Donec vel sodales ligula, at vulputate tortor. Mauris vulputate mattis enim, id laoreet augue feugiat ut.
+        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce consequat hendrerit risus, sed venenatis ipsum imperdiet vel. Pellentesque feugiat mauris sed commodo vulputate. Donec vel sodales ligula, at vulputate tortor.'
+
+variants:
+  -
+    name: Lede paragraphs
+    context:
+      class: lede
+      text: 'Paragraphs immediately following an H1 are styled as lede text. Donec vel sodales ligula, at vulputate tortor. Mauris vulputate mattis enim, id laoreet augue feugiat ut.
+        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce consequat hendrerit risus, sed venenatis ipsum imperdiet vel. Pellentesque feugiat mauris sed commodo vulputate. Donec vel sodales ligula, at vulputate tortor.'

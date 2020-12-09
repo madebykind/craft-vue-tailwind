@@ -1,0 +1,131 @@
+/* ==========================================================================
+    PROSE - Longform content, the stuff we hope someone else will write!
+  ========================================================================== */
+
+.prose {
+
+  figure {
+    @apply my-8;
+  }
+
+  /* Headings need some space */
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mt-12 mb-4;
+  }
+
+  /* Lists */
+  & > dl,
+  & > ol,
+  & > ul {
+    @apply my-8;
+
+    @screen lg {
+      @apply text-md;
+    }
+  }
+
+  /* Listy lists */
+  & > ol,
+  & > ul {
+
+    @apply  leading-snug;
+
+    & > li {
+      @apply pl-6 relative;
+
+      /* Faux list markers */
+      &::before {
+        @apply
+          absolute
+          left-0
+        ;
+      }
+    }
+  }
+
+  /* Ordered lists */
+  & > ol {
+    counter-reset: list-counter;
+
+    & > li {
+      counter-increment: list-counter;
+
+      /* Faux numero */
+      &::before {
+        @apply text-teal;
+
+        content: counter(list-counter) '.';
+      }
+    }
+  }
+
+  /* Unordered lists */
+  & > ul > li {
+    /* Faux bullets */
+    &::before {
+      @apply
+        bg-teal
+        block
+        h-2 w-2
+      ;
+
+      top: 0.5rem;
+      content: '';
+    }
+  }
+
+  li + li {
+    /* Space between list items */
+    @apply mt-4;
+  }
+
+  p {
+    + p {
+      @apply mt-4;
+    }
+
+    @screen lg {
+      @apply text-md;
+    }
+  }
+
+  /* base blockquote */
+  blockquote {
+    @apply
+      relative
+      text-5xl
+      font-bold
+      leading-snug
+    ;
+
+    &::before {
+      content: '“';
+    }
+
+    &::after {
+      content: '”';
+    }
+
+  }
+
+  code,
+  pre {
+    @apply
+      font-mono
+      subpixel-antialiased
+    ;
+
+  }
+}
+
+/* Embiggened texty */
+.lede {
+  @apply
+    leading-snug
+    text-xl
+  ;
+}

@@ -1,0 +1,34 @@
+
+{% if label %}
+  {% include '@label' with {
+    class: labelClass|default(null),
+    for: id,
+    label: label,
+    state: labelState|default(),
+  } only %}
+{% endif %}
+<div class="select">
+  <select {{ attr({
+    required: required|default(false),
+    id: id|default(null),
+    name: name
+  }) }} >
+    <option disabled {% if optValue == null %}selected="selected"{% endif %}>Please select an option</option>
+    {% for option in options|default([]) %}
+      <option value="{{ option.id }}"{% if optValue|default(null) == option.id %}selected="selected"{% endif %}>{{ option.title }}</option>
+    {% endfor %}
+  </select>
+  <span class="select__icon" role="presentation">
+  {% spaceless %}
+      {%- include '@icon' with {
+        class: 'flex-none inline-block mr-4 text-currentColor w-4 pointer-events-none',
+        icon: 'chevron',
+      } only -%}
+    {% endspaceless %}</span>
+</div>
+{% if notification|default() %}
+  {% include '@notification-inline' with {
+    message: notification,
+    state: noteState,
+  } only %}
+{% endif %}
